@@ -1,0 +1,137 @@
+<!doctype html>
+<!--
+  This is the entrance page for the portfolio.
+  Everything is plain HTML so the site can be opened directly or hosted on GitHub Pages.
+-->
+<html lang="en">
+  <head>
+    <!-- UTF-8 keeps punctuation and future multilingual text rendering correctly. -->
+    <meta charset="utf-8">
+
+    <!-- This viewport rule makes the layout use the actual width of phones and tablets. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The description is used by search engines and link previews. -->
+    <meta
+      name="description"
+      content="The personal portfolio and collected practice of Eunah Jeong."
+    >
+
+    <!-- The browser tab title identifies both the person and the purpose of the page. -->
+    <title>Eunah Jeong — Selected Rooms</title>
+
+    <!-- All three pages share one stylesheet to keep the site small and consistent. -->
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <!-- The home-page class enables the taller, gallery-like entrance layout. -->
+  <body class="home-page">
+    <!--
+      Keyboard users can jump past the repeated header.
+      The link stays visually hidden until it receives focus.
+    -->
+    <a class="skip-link" href="#main-content">Skip to the gallery</a>
+
+    <!-- This restrained header behaves like a museum room label, not a large hero. -->
+    <header class="site-header site-header--home">
+      <!-- The name links back to this entrance when the header is reused elsewhere. -->
+      <a class="site-name" href="index.html" aria-label="Eunah Jeong, home">
+        Eunah Jeong
+      </a>
+
+      <!-- This short descriptor establishes that the two images are navigational rooms. -->
+      <p class="site-note">Selected rooms</p>
+    </header>
+
+    <!-- The main landmark contains the complete first-screen experience. -->
+    <main class="entrance" id="main-content">
+      <!--
+        This introduction gives the page a quiet curatorial voice.
+        It can be replaced with a more personal sentence later.
+      -->
+      <div class="entrance-intro">
+        <p class="eyebrow">Wayu · 臥遊</p>
+        <h1>Two rooms, one practice.</h1>
+        <p class="entrance-copy">
+          Wayu—literally “reclining journey”—is the practice of wandering
+          through a landscape in the mind by contemplating a painting. Enter
+          slowly, follow what catches your eye, and return to find something new.
+        </p>
+      </div>
+
+      <!-- The gallery uses a two-column grid on wide screens and one column on phones. -->
+      <div class="gallery" aria-label="Portfolio sections">
+        <!--
+          Wrapping the full figure in a link makes the image, frame, and caption one
+          generous click target. The accessible name explains the destination.
+        -->
+        <a
+          class="artwork-link"
+          href="career.html"
+          aria-label="Enter the Work and Career room"
+        >
+          <figure class="artwork">
+            <!-- Nested frame elements create wood and gilt layers without JavaScript. -->
+            <div class="frame frame--walnut">
+              <div class="frame-liner">
+                <!--
+                  Explicit dimensions reserve the correct space before the image loads.
+                  Eager loading prioritizes this first-viewport artwork.
+                -->
+                <img
+                  src="assets/career-painting.jpg"
+                  width="900"
+                  height="1124"
+                  alt="Oil painting of a lamplit study with drawings, books, and a northern window"
+                  loading="eager"
+                >
+              </div>
+            </div>
+
+            <!-- The visible caption names the destination and provides brief context. -->
+            <figcaption class="artwork-caption">
+              <span class="artwork-number">Room I</span>
+              <span class="artwork-title">Work &amp; Career</span>
+              <span class="artwork-description">Projects, experience, and study</span>
+            </figcaption>
+          </figure>
+        </a>
+
+        <!-- This second linked artwork leads to skills and interests outside formal work. -->
+        <a
+          class="artwork-link"
+          href="practice.html"
+          aria-label="Enter the Other Practice room"
+        >
+          <figure class="artwork">
+            <!-- The darker frame variation gives the pair a collected, not matched, feel. -->
+            <div class="frame frame--ebonized">
+              <div class="frame-liner">
+                <!-- This descriptive alternative text communicates the scene without mood filler. -->
+                <img
+                  src="assets/practice-painting.jpg"
+                  width="900"
+                  height="1124"
+                  alt="Oil painting of a burgundy chair, an open notebook, a camera, and a cello"
+                  loading="eager"
+                >
+              </div>
+            </div>
+
+            <!-- The second caption follows the same structure for predictable scanning. -->
+            <figcaption class="artwork-caption">
+              <span class="artwork-number">Room II</span>
+              <span class="artwork-title">Other Practice</span>
+              <span class="artwork-description">Skills, making, and private interests</span>
+            </figcaption>
+          </figure>
+        </a>
+      </div>
+    </main>
+
+    <!-- A small footer completes the wall without competing with the two main choices. -->
+    <footer class="home-footer">
+      <p>Portfolio collection · MMXXVI</p>
+    </footer>
+  </body>
+</html>
