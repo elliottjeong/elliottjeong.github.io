@@ -185,7 +185,7 @@ a {
 
 .eyebrow,
 .section-number,
-.artwork-number,
+.home-link-number,
 .record-meta {
   color: var(--burgundy);
   font-family: var(--sans);
@@ -212,127 +212,58 @@ a {
 }
 
 /*
-  TWO-PAINTING GALLERY
-  Equal grid tracks and fixed image aspect ratios stop labels or image loading from
-  changing the layout. The generous gap gives each painting visual independence.
+  HOME NAVIGATION
+  Large, direct text links make the site's two destinations clear without imagery.
 */
-.gallery {
-  max-width: 920px;
+.home-links {
+  max-width: 760px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: 64px;
+  border-top: 1px solid var(--rule);
 }
 
-.artwork-link {
-  display: block;
-  color: inherit;
+.home-links a {
+  min-height: 118px;
+  padding: 24px 4px;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  border-bottom: 1px solid var(--rule);
   text-decoration: none;
 }
 
-.artwork {
-  width: 100%;
-  transition: transform 260ms ease;
+.home-link-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
-/*
-  ANTIQUE FRAMES
-  The main border is stained wood, the outline suggests a thin gilt edge, and the
-  inset shadows provide depth. This keeps the visual effect entirely in CSS.
-*/
-.frame {
-  width: 100%;
-  padding: 13px;
-  border: 3px solid var(--walnut-dark);
-  outline: 1px solid var(--brass);
-  outline-offset: -7px;
-  background: var(--walnut);
-  box-shadow:
-    0 3px 2px rgba(35, 24, 17, 0.35),
-    0 16px 30px rgba(48, 37, 28, 0.23),
-    inset 0 0 0 3px rgba(199, 170, 112, 0.25),
-    inset 0 0 12px rgba(15, 8, 4, 0.75);
-  transition:
-    box-shadow 260ms ease,
-    filter 260ms ease;
-}
-
-.frame--walnut {
-  background-color: var(--walnut);
-}
-
-.frame--ebonized {
-  border-color: #15120f;
-  background-color: var(--ebony);
-  outline-color: #816a43;
-}
-
-.frame-liner {
-  padding: 6px;
-  border: 1px solid #594420;
-  background: var(--brass-light);
-  box-shadow: inset 0 0 7px rgba(41, 29, 13, 0.75);
-}
-
-.frame img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border: 1px solid rgba(24, 17, 10, 0.7);
-  filter: saturate(0.9) contrast(1.03);
-}
-
-/*
-  FRAME INTERACTION
-  Movement is deliberately slight. Keyboard focus is applied to the full link,
-  while hover warms the image and increases the wall shadow.
-*/
-.artwork-link:hover .artwork {
-  transform: translateY(-4px);
-}
-
-.artwork-link:hover .frame {
-  box-shadow:
-    0 3px 2px rgba(35, 24, 17, 0.4),
-    0 21px 36px rgba(48, 37, 28, 0.3),
-    inset 0 0 0 3px rgba(199, 170, 112, 0.32),
-    inset 0 0 12px rgba(15, 8, 4, 0.75);
-  filter: brightness(1.035);
-}
-
-.artwork-link:focus-visible {
-  outline-offset: 10px;
-}
-
-/*
-  ARTWORK CAPTIONS
-  The caption uses three block-level lines so long wording wraps naturally instead
-  of colliding with adjacent elements.
-*/
-.artwork-caption {
-  padding: 25px 8px 0;
-  text-align: center;
-}
-
-.artwork-number,
-.artwork-title,
-.artwork-description {
-  display: block;
-}
-
-.artwork-title {
-  margin-top: 7px;
-  font-size: 1.42rem;
+.home-link-copy strong {
+  font-size: 1.45rem;
+  font-weight: 400;
   line-height: 1.25;
 }
 
-.artwork-description {
-  margin-top: 5px;
+.home-link-copy small {
   color: var(--ink-soft);
   font-family: var(--sans);
   font-size: 0.76rem;
   line-height: 1.5;
+}
+
+.home-link-arrow {
+  color: var(--burgundy);
+  font-family: var(--sans);
+  font-size: 1.35rem;
+  transition: transform 180ms ease;
+}
+
+.home-links a:hover .home-link-copy strong {
+  color: var(--burgundy);
+}
+
+.home-links a:hover .home-link-arrow {
+  transform: translateX(4px);
 }
 
 /*
@@ -584,7 +515,7 @@ a {
 
 /*
   PRACTICE COLLECTION INDEX
-  This compact register gives each medium a stable place in Room II. New practices
+  This compact register gives each medium a stable place. New practices
   can be added as sibling links without changing the gallery below.
 */
 .practice-shell {
@@ -599,7 +530,7 @@ a {
   margin-bottom: 84px;
   padding: 25px 0;
   display: grid;
-  grid-template-columns: 116px minmax(260px, 0.85fr) minmax(260px, 1fr);
+  grid-template-columns: 90px repeat(3, minmax(180px, 1fr));
   align-items: center;
   gap: 30px;
   border-top: 1px solid var(--rule);
@@ -655,6 +586,7 @@ a {
 }
 
 .collection-index-note {
+  grid-column: 2 / -1;
   max-width: 390px;
   color: var(--ink-soft);
   font-size: 0.87rem;
@@ -687,6 +619,91 @@ a {
   padding-bottom: 2px;
   color: var(--ink-soft);
   font-size: 1rem;
+}
+
+/*
+  SKETCH STUDIES
+  The studies read as a learning sequence rather than an undifferentiated image
+  archive. Paper is contained within each mount so annotations remain visible.
+*/
+.sketch-collection {
+  padding-bottom: 90px;
+}
+
+.sketch-stage {
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.sketch-stage + .sketch-stage {
+  margin-top: 76px;
+}
+
+.sketch-stage-heading {
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 82px minmax(180px, 0.7fr) minmax(260px, 1fr);
+  align-items: baseline;
+  gap: 24px;
+}
+
+.sketch-stage-heading p,
+.sketch-stage-heading span {
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.sketch-stage-heading p {
+  color: var(--burgundy);
+  font-weight: 600;
+}
+
+.sketch-stage-heading h3 {
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.sketch-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 38px 24px;
+}
+
+.sketch-work {
+  min-width: 0;
+}
+
+.sketch-work .practice-image-link {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  padding: 9px;
+}
+
+.sketch-work .practice-image-link img {
+  object-fit: contain;
+  background: #f2eee7;
+}
+
+.sketch-work figcaption {
+  margin-top: 12px;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 0.73rem;
+  line-height: 1.4;
+}
+
+.sketch-work figcaption span {
+  margin-right: 7px;
+  color: var(--burgundy);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
 }
 
 .sewing-rail {
@@ -984,14 +1001,10 @@ a {
 
 /*
   TABLET LAYOUT
-  At medium widths the entrance spacing tightens while the two paintings remain
-  side by side. Type sizes are fixed values rather than viewport-scaled formulas.
+  At medium widths the entrance spacing tightens. Type sizes are fixed values
+  rather than viewport-scaled formulas.
 */
 @media (max-width: 820px) {
-  .gallery {
-    gap: 34px;
-  }
-
   .entrance-intro h1 {
     font-size: 2.35rem;
   }
@@ -1007,8 +1020,12 @@ a {
   }
 
   .collection-index {
-    grid-template-columns: 88px minmax(220px, 0.8fr) minmax(240px, 1fr);
+    grid-template-columns: 72px repeat(3, minmax(140px, 1fr));
     gap: 20px;
+  }
+
+  .sketch-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .collection-heading {
@@ -1020,8 +1037,8 @@ a {
 
 /*
   PHONE LAYOUT
-  The frames stack, navigation wraps safely, and all two-column reading structures
-  become one column. Stable spacing keeps labels and headings from overlapping.
+  Navigation wraps safely and all two-column reading structures become one column.
+  Stable spacing keeps labels and headings from overlapping.
 */
 @media (max-width: 620px) {
   body {
@@ -1060,14 +1077,10 @@ a {
     font-size: 2.05rem;
   }
 
-  .gallery {
-    max-width: 390px;
-    grid-template-columns: 1fr;
-    gap: 58px;
-  }
-
-  .frame {
-    padding: 11px;
+  .home-links a {
+    min-height: 104px;
+    grid-template-columns: 38px minmax(0, 1fr) auto;
+    gap: 10px;
   }
 
   .home-footer {
@@ -1137,6 +1150,7 @@ a {
 
   .collection-index-note {
     max-width: 500px;
+    grid-column: auto;
   }
 
   .collection-heading {
@@ -1147,6 +1161,24 @@ a {
 
   .collection-heading .section-heading {
     margin-bottom: 0;
+  }
+
+  .sketch-collection {
+    padding-bottom: 70px;
+  }
+
+  .sketch-stage + .sketch-stage {
+    margin-top: 58px;
+  }
+
+  .sketch-stage-heading {
+    margin-bottom: 24px;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .sketch-gallery {
+    gap: 30px 14px;
   }
 
   .sewing-rail {
@@ -1220,6 +1252,10 @@ a {
     margin-left: 0;
   }
 
+  .sketch-gallery {
+    grid-template-columns: 1fr;
+  }
+
   .viewer-bar {
     min-height: 84px;
     padding: 12px 14px 11px;
@@ -1234,21 +1270,20 @@ a {
 /*
   REDUCED MOTION
   Visitors who request less motion receive an immediate state change instead of the
-  frame movement and smooth scrolling used elsewhere.
+  movement and smooth scrolling used elsewhere.
 */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .artwork,
-  .frame,
+  .home-link-arrow,
   .practice-image-link,
   .practice-image-link img {
     transition: none;
   }
 
-  .artwork-link:hover .artwork {
+  .home-links a:hover .home-link-arrow {
     transform: none;
   }
 
