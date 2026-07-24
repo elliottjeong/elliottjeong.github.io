@@ -1291,3 +1291,436 @@ a {
     transform: none;
   }
 }
+
+/*
+  BIRD AND ROBOT GAME
+  A compact, paper-like game board lets the interactive page share the gallery's
+  quiet visual language without relying on external images or libraries.
+*/
+.game-shell {
+  width: min(calc(100% - 48px), 1000px);
+  margin: 0 auto;
+  padding: 74px 0 88px;
+}
+
+.game-intro {
+  max-width: 650px;
+  margin: 0 auto 58px;
+  text-align: center;
+}
+
+.game-intro h1 {
+  margin-top: 12px;
+  font-size: clamp(2.35rem, 6vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.03;
+}
+
+.game-intro > p:last-child {
+  max-width: 540px;
+  margin: 20px auto 0;
+  color: var(--ink-soft);
+}
+
+.game-layout {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.55fr) minmax(0, 1.45fr);
+  gap: clamp(34px, 7vw, 80px);
+  align-items: start;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.game-copy { padding-top: 18px; }
+
+.game-kicker {
+  color: var(--burgundy);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.game-instruction {
+  margin-top: 12px;
+  color: var(--ink-soft);
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+kbd {
+  padding: 1px 4px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: rgba(232, 225, 213, 0.45);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+}
+
+.game-progress {
+  display: grid;
+  gap: 8px;
+  margin: 25px 0 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  list-style: none;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+}
+
+.game-progress li { transition: color 180ms ease; }
+.game-progress li span { display: inline-block; width: 22px; color: var(--brass); }
+.game-progress li.is-found { color: var(--ink); }
+.game-progress li.is-found span { color: var(--burgundy); }
+
+.game-message {
+  min-height: 78px;
+  margin-top: 22px;
+  color: var(--burgundy-dark);
+  font-size: 1.03rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.game-board {
+  position: relative;
+  padding: 46px 16px 16px;
+  border: 1px solid rgba(57, 48, 38, 0.4);
+  background: rgba(232, 225, 213, 0.38);
+  box-shadow: 7px 9px 0 rgba(74, 44, 31, 0.11);
+}
+
+.game-board:focus-visible { outline-offset: 7px; }
+
+.game-legend {
+  position: absolute;
+  top: 13px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.legend-bird, .legend-robot { width: 11px; height: 11px; display: inline-block; }
+.legend-bird {
+  position: relative;
+  width: 12px;
+  height: 9px;
+  border: 1px solid var(--ink);
+  border-radius: 60% 50% 55% 45%;
+  background: var(--paper);
+}
+.legend-bird::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: -4px;
+  width: 4px;
+  height: 3px;
+  background: var(--brass);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+.legend-robot {
+  position: relative;
+  width: 12px;
+  height: 10px;
+  margin-left: 5px;
+  border: 1px solid var(--ink);
+  border-radius: 4px 4px 5px 5px;
+  background: var(--brass-light);
+}
+.legend-robot::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 5px;
+  width: 1px;
+  height: 4px;
+  background: var(--ink);
+}
+.legend-robot::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 4px 0 0 var(--ink);
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  aspect-ratio: 7 / 5;
+  border: 1px solid var(--rule);
+  background: rgba(222, 216, 205, 0.52);
+}
+
+.game-cell { position: relative; min-width: 0; border: 1px solid rgba(57, 48, 38, 0.15); }
+.game-cell.is-wall { background: var(--walnut); }
+.game-cell.is-wall::after { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(232, 225, 213, 0.16); }
+
+.bird-sprite {
+  position: absolute;
+  z-index: 3;
+  top: 50%; left: 50%;
+  width: 62%; height: 62%;
+  transform: translate(-50%, -50%);
+}
+
+.bird-body, .bird-face, .bird-wing, .bird-eye, .bird-beak, .bird-leg { position: absolute; display: block; }
+
+.bird-body {
+  z-index: 2;
+  bottom: 16%; left: 14%;
+  width: 72%; height: 68%;
+  border: 1.5px solid var(--ink);
+  border-radius: 48% 48% 43% 43%;
+  background: var(--paper);
+  box-shadow: inset -5px -6px 0 rgba(93, 85, 74, 0.12);
+}
+
+.bird-face {
+  z-index: 4;
+  top: 14%; left: 50%;
+  width: 74%; height: 59%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+.bird-wing {
+  z-index: 3;
+  top: 47%;
+  width: 34%; height: 36%;
+  border: 1.5px solid var(--ink);
+  border-radius: 50% 50% 45% 45%;
+  background: var(--brass-light);
+}
+
+.bird-wing-left { left: -13%; transform: rotate(24deg); }
+.bird-wing-right { right: -13%; transform: rotate(-24deg); }
+
+.bird-eye {
+  top: 19%;
+  width: 20%; aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--ink);
+}
+
+.bird-eye::after { content: ""; position: absolute; top: 19%; left: 22%; width: 29%; aspect-ratio: 1; border-radius: 50%; background: var(--paper); }
+.bird-eye-left { left: 15%; }
+.bird-eye-right { right: 15%; }
+
+.bird-beak {
+  top: 54%; left: 50%;
+  width: 28%; height: 22%;
+  transform: translateX(-50%);
+  border: 1px solid var(--ink);
+  background: var(--brass);
+  border-radius: 45% 45% 55% 55%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.bird-leg { z-index: 1; bottom: 3%; width: 10%; height: 22%; border: 1.5px solid var(--ink); border-top: 0; background: var(--brass); border-radius: 0 0 45% 45%; }
+.bird-leg-left { left: 33%; }
+.bird-leg-right { right: 33%; }
+
+.game-cell.has-find::before {
+  position: absolute;
+  top: 50%; left: 50%;
+  color: var(--brass);
+  font-size: clamp(1rem, 3.1vw, 1.8rem);
+  line-height: 1;
+  transform: translate(-50%, -54%);
+}
+.game-cell.find-feather::before { content: "✦"; }
+.game-cell.find-map::before { content: "⌁"; }
+.game-cell.find-spark::before { content: "✺"; }
+
+.robot-sprite {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 76%;
+  height: 82%;
+  transform: translate(-50%, -46%);
+}
+
+.robot-sprite span { position: absolute; display: block; }
+
+.robot-antenna {
+  z-index: 1;
+  top: 1%;
+  left: 50%;
+  width: 2px;
+  height: 15%;
+  transform: translateX(-50%);
+  background: var(--ink);
+}
+.robot-antenna::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translateX(-50%);
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--burgundy);
+}
+
+.robot-head {
+  z-index: 3;
+  top: 13%;
+  left: 18%;
+  width: 64%;
+  height: 38%;
+  border: 1.5px solid var(--ink);
+  border-radius: 42% 42% 34% 34%;
+  background: var(--brass-light);
+  box-shadow: inset -3px -3px 0 rgba(93, 85, 74, 0.11);
+}
+.robot-face {
+  top: 23%;
+  left: 16%;
+  width: 68%;
+  height: 53%;
+  border: 1px solid var(--ink);
+  border-radius: 44%;
+  background: var(--paper);
+}
+.robot-eye {
+  top: 31%;
+  width: 13%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ink);
+}
+.robot-eye::after {
+  content: "";
+  position: absolute;
+  top: 19%;
+  left: 20%;
+  width: 29%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--paper);
+}
+.robot-eye-left { left: 22%; }
+.robot-eye-right { right: 22%; }
+.robot-cheek {
+  bottom: 18%;
+  width: 13%;
+  height: 8%;
+  border-radius: 50%;
+  background: var(--burgundy);
+  opacity: 0.65;
+}
+.robot-cheek-left { left: 13%; }
+.robot-cheek-right { right: 13%; }
+
+.robot-body {
+  z-index: 2;
+  top: 48%;
+  left: 25%;
+  width: 50%;
+  height: 34%;
+  border: 1.5px solid var(--ink);
+  border-radius: 31% 31% 38% 38%;
+  background: var(--brass-light);
+}
+.robot-heart {
+  top: 23%;
+  left: 50%;
+  color: var(--burgundy);
+  font-size: clamp(0.38rem, 1.15vw, 0.65rem);
+  line-height: 1;
+  transform: translateX(-50%);
+}
+.robot-arm {
+  z-index: 1;
+  top: 52%;
+  width: 24%;
+  height: 20%;
+  border: 1.5px solid var(--ink);
+  border-radius: 48%;
+  background: var(--brass);
+}
+.robot-arm-left { left: 10%; transform: rotate(28deg); }
+.robot-arm-right { right: 10%; transform: rotate(-28deg); }
+.robot-foot {
+  z-index: 3;
+  bottom: 7%;
+  width: 31%;
+  height: 20%;
+  border: 1.5px solid var(--ink);
+  border-radius: 48% 48% 42% 42%;
+  background: var(--paper);
+}
+.robot-foot-left { left: 16%; transform: rotate(8deg); }
+.robot-foot-right { right: 16%; transform: rotate(-8deg); }
+.game-cell.has-robot.is-waiting { opacity: 0.5; }
+
+.game-controls {
+  width: 156px;
+  margin: 21px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.game-controls button {
+  min-height: 39px;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  background: rgba(232, 225, 213, 0.6);
+  font: 1.05rem/1 var(--sans);
+  cursor: pointer;
+}
+.game-controls button:hover { background: var(--paper); color: var(--burgundy); }
+.game-controls button[data-move="up"] { grid-column: 2; }
+.game-controls button[data-move="left"] { grid-column: 1; grid-row: 2; }
+.game-controls button[data-move="down"] { grid-column: 2; grid-row: 2; }
+.game-controls button[data-move="right"] { grid-column: 3; grid-row: 2; }
+
+.game-reset {
+  display: block;
+  margin: 17px auto 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--ink-soft);
+  background: none;
+  font: 0.75rem var(--sans);
+  cursor: pointer;
+}
+.game-reset:hover { color: var(--burgundy); }
+
+@media (max-width: 680px) {
+  .game-shell { width: min(calc(100% - 40px), 1000px); padding: 54px 0 68px; }
+  .game-intro { margin-bottom: 42px; }
+  .game-layout { grid-template-columns: 1fr; gap: 29px; }
+  .game-copy { padding-top: 0; }
+  .game-message { min-height: 0; }
+  .game-stage { max-width: 540px; width: 100%; margin: 0 auto; }
+}
+
+@media (max-width: 410px) {
+  .game-page .site-header { align-items: flex-start; flex-direction: column; gap: 9px; }
+  .game-page .site-nav { width: 100%; justify-content: space-between; }
+  .game-page .site-nav { font-size: 0.64rem; gap: 9px; }
+  .game-board { padding: 40px 10px 10px; }
+  .game-legend { right: 10px; top: 11px; font-size: 0.56rem; }
+}

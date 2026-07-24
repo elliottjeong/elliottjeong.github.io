@@ -26,3 +26,17 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 There is no build or automated test process. The user will verify changes
 manually; end responses with a concise summary of files changed.
+
+## Git push troubleshooting
+
+If `git push` fails with an HTTP 400, an unexpected sideband disconnect, and a
+misleading `Everything up-to-date` message, retry the push with HTTP/1.1 and a
+larger one-time upload buffer:
+
+```sh
+git -c http.version=HTTP/1.1 -c http.postBuffer=524288000 push origin main
+```
+
+Verify that the push succeeded by confirming `git status --short --branch` no
+longer reports the local branch as ahead of `origin/main`. Keep these settings
+command-local unless repeated failures justify changing the Git configuration.
