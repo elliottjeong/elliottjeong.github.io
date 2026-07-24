@@ -178,9 +178,9 @@ a {
 }
 
 .entrance-intro {
-  max-width: 620px;
+  max-width: 500px;
   margin: 0 auto 48px;
-  text-align: center;
+  text-align: left;
 }
 
 .eyebrow,
@@ -1457,7 +1457,7 @@ kbd {
 }
 
 .game-progress li { transition: color 180ms ease; }
-.game-progress li span { display: inline-block; width: 22px; color: var(--brass); }
+.game-progress li span { display: inline-block; width: 28px; color: var(--brass); font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.04em; }
 .game-progress li.is-found { color: var(--ink); }
 .game-progress li.is-found span { color: var(--burgundy); }
 
@@ -1636,6 +1636,66 @@ kbd {
   height: 64%;
   transform: translate(-50%, -50%);
 }
+
+/* Each chapter has a literal keepsake, drawn in the game's ink, brass, and paper vocabulary. */
+.game-cell.is-locked .discovery-sprite { opacity: 0.42; filter: grayscale(0.7); }
+
+/* 01 — an open book for story and expression. */
+.book-cover { z-index: 1; inset: 17% 9% 14% 9%; border: 1.5px solid var(--ink); border-radius: 7% 7% 5% 5%; background: var(--brass-light); transform: rotate(-5deg); box-shadow: inset -4px -4px 0 rgba(93, 85, 74, 0.12); }
+.book-pages { z-index: 2; top: 20%; bottom: 20%; width: 38%; border: 1.5px solid var(--ink); background: var(--paper); }
+.book-page-left { left: 13%; border-radius: 5% 2% 3% 7%; transform: rotate(-7deg); transform-origin: right center; }
+.book-page-right { right: 12%; border-radius: 2% 5% 7% 3%; transform: rotate(7deg); transform-origin: left center; }
+.book-spine { z-index: 4; top: 19%; bottom: 19%; left: 50%; width: 3px; border-radius: 4px; background: var(--burgundy); transform: translateX(-50%) rotate(-1deg); }
+.book-lines { top: 24%; left: 19%; width: 62%; height: 2px; background: var(--brass); box-shadow: 0 8px 0 var(--brass), 0 16px 0 var(--brass); opacity: 0.8; }
+.book-bookmark { z-index: 5; top: 15%; right: 25%; width: 10%; height: 28%; border: 1px solid var(--ink); border-bottom: 0; background: var(--burgundy); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); transform: rotate(4deg); }
+
+/* 02 — a painter's palette and brush for art and discernment. */
+.palette-shape { inset: 19% 12% 17% 9%; border: 1.5px solid var(--ink); border-radius: 52% 46% 50% 43%; background: var(--brass-light); transform: rotate(-14deg); }
+.palette-hole { top: 19%; right: 19%; width: 22%; aspect-ratio: 1; border: 1px solid var(--ink); border-radius: 50%; background: var(--paper); }
+.paint-dot { width: 12%; aspect-ratio: 1; border: 1px solid var(--ink); border-radius: 50%; background: var(--burgundy); }
+.paint-dot-one { top: 42%; left: 19%; }
+.paint-dot-two { top: 60%; left: 39%; background: var(--paper); }
+.paint-dot-three { top: 40%; left: 57%; background: var(--brass); }
+.paint-brush { z-index: 2; top: 5%; right: 12%; width: 12%; height: 76%; border: 1.5px solid var(--ink); border-radius: 99px; background: var(--paper); transform: rotate(37deg); transform-origin: bottom; }
+.brush-tip { bottom: -16%; left: -31%; width: 160%; height: 24%; border: 1.5px solid var(--ink); border-radius: 55% 55% 90% 90%; background: var(--burgundy); }
+
+/* 03 — an unmistakable people network: three faces linked through a shared hub. */
+.discovery-synthesis { width: 84%; height: 84%; }
+.collaboration-link { z-index: 1; top: 50%; left: 50%; height: 2px; background: var(--ink); transform-origin: left center; }
+.collaboration-link-one { width: 43%; transform: rotate(-139deg); }
+.collaboration-link-two { width: 43%; transform: rotate(-41deg); }
+.collaboration-link-three { width: 34%; transform: rotate(90deg); }
+.collaboration-hub { z-index: 3; top: 43%; left: 43%; width: 14%; aspect-ratio: 1; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--burgundy); box-shadow: 0 0 0 3px var(--paper); }
+.collaboration-face { z-index: 2; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--brass-light); box-shadow: inset -3px -3px 0 rgba(93, 85, 74, 0.12); }
+.collaboration-face-one { top: 1%; left: 1%; width: 38%; aspect-ratio: 1; }
+.collaboration-face-two { top: 1%; right: 1%; width: 38%; aspect-ratio: 1; background: var(--brass); }
+.collaboration-face-three { bottom: 1%; left: 31%; width: 38%; aspect-ratio: 1; background: var(--paper); }
+.face-eye { top: 30%; width: 17%; aspect-ratio: 1; border-radius: 50%; background: var(--ink); }
+.face-eye-left { left: 23%; }
+.face-eye-right { right: 23%; }
+.face-smile { bottom: 20%; left: 50%; width: 50%; height: 24%; border: 1.5px solid var(--ink); border-top: 0; border-radius: 0 0 99px 99px; transform: translateX(-50%); }
+
+/* 04 — a working factory and rising smoke for learning through making. */
+.factory-building { z-index: 2; right: 8%; bottom: 16%; width: 68%; height: 43%; border: 1.5px solid var(--ink); border-radius: 3px 3px 1px 1px; background: var(--brass-light); }
+.factory-roof { top: -22%; left: -2%; width: 105%; height: 31%; border: 1.5px solid var(--ink); border-bottom: 0; background: var(--paper); clip-path: polygon(0 100%, 18% 34%, 36% 100%, 57% 34%, 77% 100%, 100% 34%, 100% 100%); }
+.factory-window { bottom: 17%; width: 13%; height: 21%; border: 1px solid var(--ink); background: var(--paper); }
+.factory-window-one { left: 17%; }
+.factory-window-two { left: 40%; }
+.factory-door { right: 14%; bottom: 0; width: 17%; height: 42%; border: 1px solid var(--ink); border-bottom: 0; background: var(--burgundy); }
+.factory-chimney { z-index: 1; right: 18%; bottom: 52%; width: 16%; height: 36%; border: 1.5px solid var(--ink); background: var(--brass); }
+.smoke { z-index: 3; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--paper); }
+.smoke-one { top: 8%; right: 16%; width: 19%; aspect-ratio: 1; }
+.smoke-two { top: -3%; right: 31%; width: 14%; aspect-ratio: 1; }
+
+/* 05 — an atom with orbiting electrons for the new language of STEM. */
+.atom-orbit { top: 24%; left: 9%; width: 82%; height: 48%; border: 1.5px solid var(--ink); border-radius: 50%; }
+.atom-orbit-one { transform: rotate(0deg); }
+.atom-orbit-two { transform: rotate(60deg); }
+.atom-orbit-three { transform: rotate(-60deg); }
+.atom-nucleus { z-index: 2; top: 42%; left: 42%; width: 18%; aspect-ratio: 1; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--burgundy); }
+.atom-electron { z-index: 3; width: 12%; aspect-ratio: 1; border: 1px solid var(--ink); border-radius: 50%; background: var(--brass); }
+.atom-electron-one { top: 19%; left: 24%; }
+.atom-electron-two { right: 13%; bottom: 23%; background: var(--paper); }
 
 /* Finds share the bird and robot's simple ink outline, brass fill, and paper shadow. */
 .discovery-feather { width: 59%; height: 72%; transform: translate(-50%, -50%) rotate(31deg); }

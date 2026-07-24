@@ -8,9 +8,11 @@ const width = 7;
 const height = 5;
 const start = "0,4";
 const discoveryDetails = [
-  { id: "feather", message: "A feather points toward a place you have not seen yet." },
-  { id: "map", message: "A small map: curiosity is a way of moving forward." },
-  { id: "spark", message: "A quiet spark hums with the possibility of making." }
+  { id: "story", message: "Story & expression — writing and making with artistic people taught me to notice how people create meaning together." },
+  { id: "discernment", message: "Art & discernment — music, paintings, design, and other art forms became a way of paying close attention." },
+  { id: "synthesis", message: "Collaboration & scale — digital media showed me how fulfilling it is to gather skills and people into a larger project." },
+  { id: "making", message: "Learning by making — game design, 3D tools, furniture, and manufacturing made unfamiliar worlds feel buildable." },
+  { id: "research", message: "A new language: STEM — computer science and nanoscience gave me a foundation for questions that once felt far away." }
 ];
 let walls;
 let discoveries;
@@ -55,12 +57,14 @@ function generateMap() {
     for (let x = 0; x < width; x += 1) cells.push(`${x},${y}`);
   }
 
-  const [firstFind, secondFind, thirdFind, newRobot] = shuffle(cells.filter((cell) => cell !== start)).slice(0, 4);
+  const [firstFind, secondFind, thirdFind, fourthFind, fifthFind, newRobot] = shuffle(cells.filter((cell) => cell !== start)).slice(0, 6);
   robot = newRobot;
   discoveries = {
     [firstFind]: discoveryDetails[0],
     [secondFind]: discoveryDetails[1],
-    [thirdFind]: discoveryDetails[2]
+    [thirdFind]: discoveryDetails[2],
+    [fourthFind]: discoveryDetails[3],
+    [fifthFind]: discoveryDetails[4]
   };
 
   walls = new Set();
@@ -79,7 +83,7 @@ function resetGame(shouldFocus = false) {
   bird = { x: 0, y: 4 };
   found = new Set();
   completed = false;
-  message.textContent = "The first step is a question.";
+  message.textContent = "The first step is a question. Follow what makes you curious.";
   progressItems.forEach((item) => item.classList.remove("is-found"));
   render();
   if (shouldFocus) board.focus();
@@ -87,9 +91,11 @@ function resetGame(shouldFocus = false) {
 
 function discoverySprite(id) {
   const sprites = {
-    feather: '<span class="discovery-sprite discovery-feather" aria-hidden="true"><span class="feather-shaft"></span><span class="feather-vane feather-vane-left"></span><span class="feather-vane feather-vane-right"></span><span class="feather-tip"></span></span>',
-    map: '<span class="discovery-sprite discovery-map" aria-hidden="true"><span class="map-sheet"><span class="map-fold map-fold-one"></span><span class="map-fold map-fold-two"></span><span class="map-route"></span><span class="map-marker"></span></span></span>',
-    spark: '<span class="discovery-sprite discovery-spark" aria-hidden="true"><span class="spark-core"></span><span class="spark-ray spark-ray-one"></span><span class="spark-ray spark-ray-two"></span><span class="spark-ray spark-ray-three"></span><span class="spark-ray spark-ray-four"></span></span>'
+    story: '<span class="discovery-sprite discovery-story" aria-hidden="true"><span class="book-cover"></span><span class="book-pages book-page-left"><span class="book-lines"></span></span><span class="book-pages book-page-right"><span class="book-lines"></span></span><span class="book-spine"></span><span class="book-bookmark"></span></span>',
+    discernment: '<span class="discovery-sprite discovery-discernment" aria-hidden="true"><span class="palette-shape"><span class="palette-hole"></span><span class="paint-dot paint-dot-one"></span><span class="paint-dot paint-dot-two"></span><span class="paint-dot paint-dot-three"></span></span><span class="paint-brush"><span class="brush-tip"></span></span></span>',
+    synthesis: '<span class="discovery-sprite discovery-synthesis" aria-hidden="true"><span class="collaboration-link collaboration-link-one"></span><span class="collaboration-link collaboration-link-two"></span><span class="collaboration-link collaboration-link-three"></span><span class="collaboration-hub"></span><span class="collaboration-face collaboration-face-one"><span class="face-eye face-eye-left"></span><span class="face-eye face-eye-right"></span><span class="face-smile"></span></span><span class="collaboration-face collaboration-face-two"><span class="face-eye face-eye-left"></span><span class="face-eye face-eye-right"></span><span class="face-smile"></span></span><span class="collaboration-face collaboration-face-three"><span class="face-eye face-eye-left"></span><span class="face-eye face-eye-right"></span><span class="face-smile"></span></span></span>',
+    making: '<span class="discovery-sprite discovery-making" aria-hidden="true"><span class="factory-building"><span class="factory-roof"></span><span class="factory-window factory-window-one"></span><span class="factory-window factory-window-two"></span><span class="factory-door"></span></span><span class="factory-chimney"></span><span class="smoke smoke-one"></span><span class="smoke smoke-two"></span></span>',
+    research: '<span class="discovery-sprite discovery-research" aria-hidden="true"><span class="atom-orbit atom-orbit-one"></span><span class="atom-orbit atom-orbit-two"></span><span class="atom-orbit atom-orbit-three"></span><span class="atom-nucleus"></span><span class="atom-electron atom-electron-one"></span><span class="atom-electron atom-electron-two"></span></span>'
   };
   return sprites[id];
 }
@@ -104,6 +110,7 @@ function render() {
       if (walls.has(position)) cell.classList.add("is-wall");
       if (discoveries[position] && !found.has(discoveries[position].id)) {
         cell.classList.add("has-find", `find-${discoveries[position].id}`);
+        if (discoveryDetails.indexOf(discoveries[position]) > found.size) cell.classList.add("is-locked");
         cell.setAttribute("aria-hidden", "true");
         cell.insertAdjacentHTML("beforeend", discoverySprite(discoveries[position].id));
       }
@@ -138,15 +145,21 @@ function move(direction) {
   if (discoveries[nextKey]) {
     const discovery = discoveries[nextKey];
     if (!found.has(discovery.id)) {
-      found.add(discovery.id);
-      document.querySelector(`[data-find="${discovery.id}"]`).classList.add("is-found");
-      message.textContent = discovery.message;
+      const discoveryIndex = discoveryDetails.indexOf(discovery);
+      if (discoveryIndex === found.size) {
+        found.add(discovery.id);
+        document.querySelector(`[data-find="${discovery.id}"]`).classList.add("is-found");
+        message.textContent = discovery.message;
+      } else {
+        const nextDiscovery = discoveryDetails[found.size];
+        message.textContent = `This is chapter ${String(discoveryIndex + 1).padStart(2, "0")}. Find chapter ${String(found.size + 1).padStart(2, "0")} first: ${nextDiscovery.id === "story" ? "Story & expression" : nextDiscovery.id === "discernment" ? "Art & discernment" : nextDiscovery.id === "synthesis" ? "Collaboration & scale" : nextDiscovery.id === "making" ? "Learning by making" : "A new language: STEM"}.`;
+      }
     }
   }
   if (nextKey === robot) {
     if (found.size === Object.keys(discoveries).length) {
       completed = true;
-      message.textContent = "The robot blinks awake. Curiosity led you here — now there is more to explore, together.";
+      message.textContent = "The robot blinks awake. It was never a sudden destination: story, attention, collaboration, making, and research all led here. There is still more to explore.";
     } else {
       message.textContent = "The robot is here, but the trail still has something to show you.";
     }
