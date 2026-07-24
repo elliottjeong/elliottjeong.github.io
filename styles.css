@@ -398,6 +398,35 @@ a {
   line-height: 1.6;
 }
 
+/* CAREER PAGE: an annotated career record with small drafting-like motifs. */
+.career-intro-note {
+  max-width: 550px;
+  margin-top: 17px;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.career-index {
+  margin: -21px 0 84px;
+  padding: 19px 0;
+  display: grid;
+  grid-template-columns: 120px repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+}
+
+.career-index p,
+.career-index a { color: var(--ink-soft); }
+.career-index p { margin: 0; color: var(--burgundy); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; }
+.career-index a { text-decoration: none; }
+.career-index a span { display: block; margin-bottom: 2px; color: var(--burgundy); font-size: 0.62rem; letter-spacing: 0.1em; }
+.career-index a:hover { color: var(--burgundy); text-decoration: underline; }
+
 /*
   CONTENT SECTIONS
   Each full-width section begins with a rule and a two-column heading. No section is
@@ -422,6 +451,21 @@ a {
   letter-spacing: 0;
   line-height: 1.2;
 }
+
+.career-heading-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.section-motif {
+  width: 72px;
+  flex: 0 0 72px;
+  color: var(--brass);
+}
+
+.section-motif svg { display: block; width: 100%; height: auto; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.35; }
 
 /*
   PROJECT RECORDS
@@ -506,6 +550,24 @@ a {
   font-weight: 400;
 }
 
+.fact-kicker {
+  margin: 0 0 7px;
+  color: var(--burgundy) !important;
+  font-family: var(--sans);
+  font-size: 0.64rem !important;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.3 !important;
+  text-transform: uppercase;
+}
+
+.fact--featured dd { padding: 4px 0 6px; }
+.fact--featured dd strong { font-size: 1.25rem; line-height: 1.25; }
+.fact--featured dd span:not(.fact-kicker) { max-width: 600px; }
+
+.career-education .fact { position: relative; }
+.career-education .fact dt::before { content: ""; width: 7px; height: 7px; margin: 0 9px 1px 0; display: inline-block; border: 1px solid var(--brass); border-radius: 50%; }
+
 .fact dd span {
   margin-top: 5px;
   color: var(--ink-soft);
@@ -578,6 +640,8 @@ a {
 .capability-list li:nth-child(even) {
   padding-left: 24px;
 }
+
+.career-capabilities .capability-list strong::before { margin-right: 8px; color: var(--brass); font-size: 0.78em; content: "✦"; }
 
 .contact-section {
   padding-bottom: 0;
@@ -1206,6 +1270,11 @@ a {
     font-size: 1.65rem;
   }
 
+  .career-index { margin-bottom: 64px; grid-template-columns: 1fr; gap: 12px; }
+  .career-index a { display: grid; grid-template-columns: 28px minmax(0, 1fr); align-items: baseline; gap: 6px; }
+  .career-index a span { margin: 0; }
+  .section-motif { width: 57px; flex-basis: 57px; }
+
   .record,
   .fact {
     grid-template-columns: 1fr;
@@ -1389,7 +1458,7 @@ a {
 }
 
 .game-intro {
-  max-width: 650px;
+  max-width: none;
   margin: 0 auto 58px;
   text-align: center;
 }
@@ -1399,6 +1468,7 @@ a {
   font-size: clamp(2.35rem, 6vw, 4.2rem);
   font-weight: 400;
   line-height: 1.03;
+  white-space: nowrap;
 }
 
 .game-intro > p:last-child {
@@ -1897,6 +1967,7 @@ kbd {
 @media (max-width: 680px) {
   .game-shell { width: min(calc(100% - 40px), 1000px); padding: 54px 0 68px; }
   .game-intro { margin-bottom: 42px; }
+  .game-intro h1 { white-space: normal; }
   .game-layout { grid-template-columns: 1fr; gap: 29px; }
   .game-copy { padding-top: 0; }
   .game-message { min-height: 0; }
