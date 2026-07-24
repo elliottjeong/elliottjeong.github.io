@@ -211,6 +211,90 @@ a {
   font-size: 1rem;
 }
 
+/* A small, linked vignette introduces the bird-and-robot game before the index. */
+.home-game-illustration {
+  width: min(100%, 460px);
+  margin: -12px auto 42px;
+  display: block;
+  color: var(--ink);
+  text-align: center;
+  text-decoration: none;
+}
+
+.home-game-caption,
+.home-game-invitation {
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 0.67rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-game-caption { display: block; margin-bottom: 6px; }
+
+.home-game-scene {
+  position: relative;
+  height: 166px;
+  display: block;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.home-game-scene::after {
+  content: "";
+  position: absolute;
+  right: 10%;
+  bottom: 23px;
+  left: 10%;
+  border-bottom: 1px solid rgba(57, 48, 38, 0.42);
+}
+
+.home-game-character {
+  position: absolute;
+  z-index: 1;
+  bottom: 21px;
+  width: min(122px, 28vw);
+  aspect-ratio: 1;
+}
+
+.home-game-character--bird { left: 16%; }
+.home-game-character--robot { right: 16%; }
+
+.home-game-character .bird-sprite,
+.home-game-character .robot-sprite {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+}
+
+.home-game-character .robot-sprite { transform: translateY(4%); }
+
+.home-game-character .robot-heart { font-size: 0.82rem; }
+
+.home-game-spark {
+  position: absolute;
+  z-index: 2;
+  top: 45px;
+  left: 50%;
+  color: var(--burgundy);
+  font-size: 1.25rem;
+  line-height: 1;
+  transform: translateX(-50%);
+}
+
+.home-game-invitation { display: block; margin-top: 10px; }
+.home-game-invitation span { color: var(--burgundy); font-size: 1rem; vertical-align: -1px; }
+
+.home-game-illustration:hover .home-game-invitation,
+.home-game-illustration:hover .home-game-caption { color: var(--burgundy); }
+
+.home-game-illustration:hover .home-game-character--bird { transform: translateX(4px); }
+.home-game-illustration:hover .home-game-character--robot { transform: translateX(-4px); }
+
+.home-game-character { transition: transform 180ms ease; }
+
 /*
   HOME NAVIGATION
   Large, direct text links make the site's two destinations clear without imagery.
@@ -1278,6 +1362,7 @@ a {
   }
 
   .home-link-arrow,
+  .home-game-character,
   .practice-image-link,
   .practice-image-link img {
     transition: none;
@@ -1536,17 +1621,58 @@ kbd {
 .bird-leg-left { left: 33%; }
 .bird-leg-right { right: 33%; }
 
-.game-cell.has-find::before {
+.discovery-sprite,
+.discovery-sprite span {
   position: absolute;
-  top: 50%; left: 50%;
-  color: var(--brass);
-  font-size: clamp(1rem, 3.1vw, 1.8rem);
-  line-height: 1;
-  transform: translate(-50%, -54%);
+  display: block;
+  box-sizing: border-box;
 }
-.game-cell.find-feather::before { content: "✦"; }
-.game-cell.find-map::before { content: "⌁"; }
-.game-cell.find-spark::before { content: "✺"; }
+
+.discovery-sprite {
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 64%;
+  height: 64%;
+  transform: translate(-50%, -50%);
+}
+
+/* Finds share the bird and robot's simple ink outline, brass fill, and paper shadow. */
+.discovery-feather { width: 59%; height: 72%; transform: translate(-50%, -50%) rotate(31deg); }
+.feather-shaft { z-index: 2; top: 7%; left: 48%; width: 5%; height: 89%; border: 1.5px solid var(--ink); border-radius: 99px; background: var(--brass); }
+.feather-vane { border: 1.5px solid var(--ink); background: var(--brass-light); }
+.feather-vane-left {
+  top: 6%; left: 8%; width: 84%; height: 82%;
+  border-radius: 78% 20% 74% 22%;
+  clip-path: polygon(50% 0, 71% 7%, 88% 23%, 96% 45%, 91% 66%, 76% 85%, 53% 100%, 31% 87%, 14% 65%, 4% 40%, 9% 19%, 27% 5%);
+}
+.feather-vane-right, .feather-tip { display: none; }
+
+/* A compact folded map, drawn like the rest of the game sprites. */
+.map-sheet { inset: 12% 5%; overflow: hidden; border: 1.5px solid var(--ink); border-radius: 7% 3% 8% 4%; background: var(--paper); transform: rotate(-8deg); box-shadow: inset -4px -4px 0 rgba(93, 85, 74, 0.12); }
+.map-fold { top: 0; width: 2px; height: 100%; background: var(--ink); opacity: 0.58; }
+.map-fold-one { left: 32%; }
+.map-fold-two { left: 65%; }
+.map-route { z-index: 1; top: 54%; left: 9%; width: 71%; height: 22%; border-top: 1.5px dashed var(--burgundy); border-radius: 50%; transform: rotate(-12deg); }
+.map-marker { z-index: 2; top: 27%; right: 17%; width: 18%; aspect-ratio: 1; border: 1.5px solid var(--ink); border-radius: 50% 50% 50% 0; background: var(--burgundy); transform: rotate(-45deg); }
+.map-marker::after { content: ""; position: absolute; top: 29%; left: 29%; width: 29%; aspect-ratio: 1; border-radius: 50%; background: var(--paper); }
+
+/* A crisp, four-point spark holds its shape at the game's small cell size. */
+.spark-core {
+  z-index: 2;
+  top: 8%; left: 8%; width: 84%; aspect-ratio: 1;
+  background: var(--brass);
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  filter: drop-shadow(1px 0 var(--ink)) drop-shadow(-1px 0 var(--ink)) drop-shadow(0 1px var(--ink)) drop-shadow(0 -1px var(--ink));
+}
+.spark-core::after {
+  content: "";
+  position: absolute;
+  inset: 34%;
+  background: var(--brass-light);
+  clip-path: polygon(50% 0, 64% 36%, 100% 50%, 64% 64%, 50% 100%, 36% 64%, 0 50%, 36% 36%);
+}
+.spark-ray { display: none; }
 
 .robot-sprite {
   position: absolute;

@@ -6,13 +6,15 @@ const progressItems = Array.from(document.querySelectorAll(".game-progress li"))
 
 const width = 7;
 const height = 5;
-const walls = new Set(["1,0", "3,0", "5,0", "1,1", "5,1", "1,3", "3,3", "5,3", "1,4", "3,4"]);
-const discoveries = {
-  "2,0": { id: "feather", message: "A feather points toward a place you have not seen yet." },
-  "4,1": { id: "map", message: "A small map: curiosity is a way of moving forward." },
-  "6,2": { id: "spark", message: "A quiet spark hums with the possibility of making." }
-};
-const robot = "4,3";
+const start = "0,4";
+const discoveryDetails = [
+  { id: "feather", message: "A feather points toward a place you have not seen yet." },
+  { id: "map", message: "A small map: curiosity is a way of moving forward." },
+  { id: "spark", message: "A quiet spark hums with the possibility of making." }
+];
+let walls;
+let discoveries;
+let robot;
 let bird;
 let found;
 let completed;
@@ -21,7 +23,59 @@ function keyFor(position) {
   return `${position.x},${position.y}`;
 }
 
+function shuffle(items) {
+  const shuffled = [...items];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+  return shuffled;
+}
+
+function canReachEverywhere(testWalls, targets) {
+  const visited = new Set([start]);
+  const queue = [{ x: 0, y: 4 }];
+  while (queue.length) {
+    const current = queue.shift();
+    [[0, -1], [0, 1], [-1, 0], [1, 0]].forEach(([dx, dy]) => {
+      const next = { x: current.x + dx, y: current.y + dy };
+      const nextKey = keyFor(next);
+      if (next.x >= 0 && next.x < width && next.y >= 0 && next.y < height && !testWalls.has(nextKey) && !visited.has(nextKey)) {
+        visited.add(nextKey);
+        queue.push(next);
+      }
+    });
+  }
+  return targets.every((target) => visited.has(target));
+}
+
+function generateMap() {
+  const cells = [];
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) cells.push(`${x},${y}`);
+  }
+
+  const [firstFind, secondFind, thirdFind, newRobot] = shuffle(cells.filter((cell) => cell !== start)).slice(0, 4);
+  robot = newRobot;
+  discoveries = {
+    [firstFind]: discoveryDetails[0],
+    [secondFind]: discoveryDetails[1],
+    [thirdFind]: discoveryDetails[2]
+  };
+
+  walls = new Set();
+  const protectedCells = new Set([start, robot, ...Object.keys(discoveries)]);
+  const wallCount = 7 + Math.floor(Math.random() * 5);
+  shuffle(cells.filter((cell) => !protectedCells.has(cell))).some((cell) => {
+    if (walls.size === wallCount) return true;
+    walls.add(cell);
+    if (!canReachEverywhere(walls, [robot, ...Object.keys(discoveries)])) walls.delete(cell);
+    return false;
+  });
+}
+
 function resetGame(shouldFocus = false) {
+  generateMap();
   bird = { x: 0, y: 4 };
   found = new Set();
   completed = false;
@@ -29,6 +83,15 @@ function resetGame(shouldFocus = false) {
   progressItems.forEach((item) => item.classList.remove("is-found"));
   render();
   if (shouldFocus) board.focus();
+}
+
+function discoverySprite(id) {
+  const sprites = {
+    feather: '<span class="discovery-sprite discovery-feather" aria-hidden="true"><span class="feather-shaft"></span><span class="feather-vane feather-vane-left"></span><span class="feather-vane feather-vane-right"></span><span class="feather-tip"></span></span>',
+    map: '<span class="discovery-sprite discovery-map" aria-hidden="true"><span class="map-sheet"><span class="map-fold map-fold-one"></span><span class="map-fold map-fold-two"></span><span class="map-route"></span><span class="map-marker"></span></span></span>',
+    spark: '<span class="discovery-sprite discovery-spark" aria-hidden="true"><span class="spark-core"></span><span class="spark-ray spark-ray-one"></span><span class="spark-ray spark-ray-two"></span><span class="spark-ray spark-ray-three"></span><span class="spark-ray spark-ray-four"></span></span>'
+  };
+  return sprites[id];
 }
 
 function render() {
@@ -42,6 +105,7 @@ function render() {
       if (discoveries[position] && !found.has(discoveries[position].id)) {
         cell.classList.add("has-find", `find-${discoveries[position].id}`);
         cell.setAttribute("aria-hidden", "true");
+        cell.insertAdjacentHTML("beforeend", discoverySprite(discoveries[position].id));
       }
       if (position === robot) {
         cell.classList.add("has-robot");
