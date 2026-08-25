@@ -3,88 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A setup note for the Poluto V1 development environment: laptop, GitHub, and Raspberry Pi SSH access.">
-    <title>Poluto V1: three SSH relationships — Eunah Jeong</title>
+    <meta name="robots" content="noindex">
+    <meta http-equiv="refresh" content="0; url=projects/poluto-v1/01-remote-access.html">
+    <title>Note moved — Eunah Jeong</title>
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body class="inner-page blog-page">
-    <a class="skip-link" href="#main-content">Skip to the note</a>
+    <a class="skip-link" href="#main-content">Skip to the update</a>
     <header class="site-header">
-      <a class="site-name" href="../index.html" aria-label="Eunah Jeong, home">Eunah Jeong</a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="../index.html">Home</a>
-        <a href="../career.html">Work &amp; Career</a>
-        <a href="../practice.html">Practice</a>
-        <a href="../bird-and-robot.html">Game</a>
-        <a href="index.html" aria-current="page">Notes</a>
-      </nav>
+      <a class="site-name" href="../index.html">Eunah Jeong</a>
+      <nav class="site-nav" aria-label="Primary navigation"><a href="index.html" aria-current="page">Notes</a></nav>
     </header>
-    <main class="blog-post" id="main-content">
-      <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to notes</a>
-      <header class="post-intro">
-        <p class="blog-meta"><time datetime="2026-08-26">August 26, 2026</time> · Project setup · Draft</p>
-        <h1>Poluto V1: three SSH relationships</h1>
-        <p class="post-lede">A setup note from the early days of a five-day robotics project—when “setting up SSH” turned out to be three different trust relationships.</p>
+    <main class="blog-shell" id="main-content">
+      <header class="blog-intro">
+        <p class="eyebrow">Archive update</p>
+        <h1>This note has moved.</h1>
+        <p class="page-lede"><a href="projects/poluto-v1/01-remote-access.html">Continue to Poluto V1: Three SSH relationships</a>.</p>
       </header>
-      <article class="post-content post-content--technical">
-        <p>Before I could comfortably develop for Poluto V1, I needed a way for my laptop, GitHub, and the Raspberry Pi inside the robot to recognise one another. This setup took a meaningful part of the project: not because the commands were long, but because each machine needed a distinct role and identity.</p>
-
-        <figure class="blog-image">
-          <a class="blog-image-link" href="../assets/blog/poluto-v1-ssh-01-overview.png" target="_blank" rel="noopener" aria-label="Open Figure 1 at full size">
-            <img src="../assets/blog/poluto-v1-ssh-01-overview.png" alt="Overview diagram of the Poluto V1 environment. GitHub, a laptop, and a TJBOT Raspberry Pi form three SSH trust relationships: laptop to GitHub, laptop to Raspberry Pi, and Raspberry Pi to GitHub.">
-          </a>
-          <figcaption>Figure 1. Poluto V1 development environment and remote-access overview. <span>Select the image to view it at full size.</span></figcaption>
-        </figure>
-
-        <p>Initially, I treated SSH as a single task. It became clearer when I separated the work into these three connections: laptop to GitHub, laptop to Raspberry Pi, and Raspberry Pi to GitHub.</p>
-
-        <section class="setup-step">
-          <p class="step-label">Step 1</p>
-          <h2>Laptop ↔ GitHub</h2>
-          <p>I first generated an SSH key pair on my laptop and registered its public key with GitHub. The private key remains on the laptop. When GitHub asks the machine to prove its identity, the laptop signs that request locally without sending the private key anywhere.</p>
-          <figure class="blog-image">
-            <a class="blog-image-link" href="../assets/blog/poluto-v1-ssh-02-laptop-github-authentication.png" target="_blank" rel="noopener" aria-label="Open Figure 2 at full size">
-              <img src="../assets/blog/poluto-v1-ssh-02-laptop-github-authentication.png" alt="SSH key authentication flow between a laptop and GitHub: create a key pair, add the public key to GitHub, then authenticate by signing GitHub's challenge with the laptop private key.">
-            </a>
-            <figcaption>Figure 2. SSH key authentication flow between my laptop and GitHub. <span>Select the image to view it at full size.</span></figcaption>
-          </figure>
-          <pre><code>ssh-keygen -t ed25519 -C "&lt;your-email&gt;"
-cat ~/.ssh/id_ed25519.pub
-ssh -T git@github.com</code></pre>
-          <p class="step-result">Result: my laptop could clone, pull, and push the Poluto repository through SSH.</p>
-        </section>
-
-        <section class="setup-step">
-          <p class="step-label">Step 2</p>
-          <h2>Laptop → Raspberry Pi</h2>
-          <p>The next question was more specific: where does the public key go when the target is the robot computer? While preparing the SD card in Raspberry Pi Imager, I enabled SSH, selected public-key authentication, and added my laptop’s public key. On first boot, the Pi stored that key in <code>~/.ssh/authorized_keys</code>: its list of identities allowed to log in.</p>
-          <figure class="blog-image">
-            <a class="blog-image-link" href="../assets/blog/poluto-v1-ssh-03-laptop-raspberry-pi-access.png" target="_blank" rel="noopener" aria-label="Open Figure 3 at full size">
-              <img src="../assets/blog/poluto-v1-ssh-03-laptop-raspberry-pi-access.png" alt="Raspberry Pi Imager configuration flow. The laptop public key is added during imaging, then stored in the Raspberry Pi's authorized keys file so the laptop can log in remotely.">
-            </a>
-            <figcaption>Figure 3. Preparing the Raspberry Pi to trust the laptop's SSH identity. <span>Select the image to view it at full size.</span></figcaption>
-          </figure>
-          <pre><code>ssh &lt;username&gt;@&lt;pi-address&gt;</code></pre>
-          <p class="step-result">Result: my laptop could remotely access and control Poluto’s Raspberry Pi without entering a password each time.</p>
-        </section>
-
-        <section class="setup-step">
-          <p class="step-label">Step 3</p>
-          <h2>Raspberry Pi ↔ GitHub</h2>
-          <p>Finally, the Pi itself needed direct repository access so it could clone or pull code independently. I generated a new key pair on the Pi and registered its public key with GitHub as a separate SSH identity.</p>
-          <figure class="blog-image">
-            <a class="blog-image-link" href="../assets/blog/poluto-v1-ssh-04-raspberry-pi-github-access.png" target="_blank" rel="noopener" aria-label="Open Figure 4 at full size">
-              <img src="../assets/blog/poluto-v1-ssh-04-raspberry-pi-github-access.png" alt="SSH key authentication flow between the Raspberry Pi and GitHub. A separate key pair is generated on the Pi, and its public key is registered with GitHub so the Pi can clone or pull the repository directly.">
-            </a>
-            <figcaption>Figure 4. Giving the Raspberry Pi its own GitHub SSH identity. <span>Select the image to view it at full size.</span></figcaption>
-          </figure>
-          <aside class="post-aside"><p><strong>Why a separate key?</strong> Rather than copying my laptop’s private key to the Raspberry Pi, I generated a separate key pair on the Pi so each machine could keep its own SSH identity. Private keys should stay on the machine they belong to.</p></aside>
-          <p class="step-result">Result: the Pi could clone or pull the Poluto repository directly, without using the laptop as an intermediary.</p>
-        </section>
-
-        <p>This was not only an installation record. It was the moment I began to understand the project as a distributed development environment: three separate systems, each with a purpose, permissions, and a way to authenticate.</p>
-        <p class="draft-note">This is an early process note. I will return to it with the exact project timeline and setup details from Poluto V1.</p>
-      </article>
     </main>
   </body>
 </html>

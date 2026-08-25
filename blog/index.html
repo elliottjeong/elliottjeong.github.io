@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Notes and process writing from Eunah Jeong.">
+    <meta name="description" content="Project logs, study notes, and site notes from Eunah Jeong.">
     <title>Notes — Eunah Jeong</title>
     <link rel="stylesheet" href="../styles.css">
   </head>
@@ -19,26 +19,140 @@
         <a href="index.html" aria-current="page">Notes</a>
       </nav>
     </header>
-    <main class="blog-shell" id="main-content">
-      <header class="blog-intro">
-        <p class="eyebrow">Notebook</p>
-        <h1>📜 Notes</h1>
-        <p class="page-lede">Documenting isn’t my favorite part, but when it’s done, it’s nice to look back on.</p>
-      </header>
-      <section class="blog-list" aria-label="Notes">
-        <article class="blog-preview">
-          <p class="blog-meta"><time datetime="2026-08-26">August 26, 2026</time> · Project setup</p>
-          <h2><a href="poluto-v1-remote-access.html">Poluto V1: three SSH relationships</a></h2>
-          <p>A working note on building a development environment between a laptop, GitHub, and a Raspberry Pi—one trust relationship at a time.</p>
-          <a class="blog-read-link" href="poluto-v1-remote-access.html">Read note <span aria-hidden="true">→</span></a>
-        </article>
-        <article class="blog-preview">
-          <p class="blog-meta"><time datetime="2026-08-26">August 26, 2026</time> · Site note</p>
-          <h2><a href="a-place-for-notes.html">A place for notes</a></h2>
-          <p>This new room is for documenting work in progress: observations, experiments, references, and the paths between an idea and a finished thing.</p>
-          <a class="blog-read-link" href="a-place-for-notes.html">Read note <span aria-hidden="true">→</span></a>
-        </article>
-      </section>
+    <main class="notes-layout" id="main-content">
+      <aside class="notes-sidebar" aria-label="Notes directory">
+        <nav class="notes-directory notes-directory--desktop" aria-label="Notes directory">
+          <p class="notes-directory-label">Notes directory</p>
+          <a href="index.html" aria-current="page">Archive home</a>
+          <details open>
+            <summary>Projects</summary>
+            <div class="notes-directory-children">
+              <a href="projects/index.html">All projects</a>
+              <details open>
+                <summary>Poluto V1</summary>
+                <div class="notes-directory-children">
+                  <a href="projects/poluto-v1/index.html">Project overview</a>
+                  <a href="projects/poluto-v1/01-remote-access.html"><span class="notes-directory-index">01</span> Three SSH relationships</a>
+                </div>
+              </details>
+            </div>
+          </details>
+          <details>
+            <summary>Studies</summary>
+            <div class="notes-directory-children"><a href="studies/index.html">Study archive</a></div>
+          </details>
+          <details open>
+            <summary>Site Notes</summary>
+            <div class="notes-directory-children">
+              <a href="site-notes/index.html">Collection overview</a>
+              <a href="site-notes/a-place-for-notes.html">A place for notes</a>
+            </div>
+          </details>
+        </nav>
+        <details class="notes-mobile-directory">
+          <summary>Browse notes</summary>
+          <nav class="notes-directory" aria-label="Mobile notes directory">
+            <a href="index.html" aria-current="page">Archive home</a>
+            <details open>
+              <summary>Projects</summary>
+              <div class="notes-directory-children">
+                <a href="projects/index.html">All projects</a>
+                <details open>
+                  <summary>Poluto V1</summary>
+                  <div class="notes-directory-children">
+                    <a href="projects/poluto-v1/index.html">Project overview</a>
+                    <a href="projects/poluto-v1/01-remote-access.html"><span class="notes-directory-index">01</span> Three SSH relationships</a>
+                  </div>
+                </details>
+              </div>
+            </details>
+            <details>
+              <summary>Studies</summary>
+              <div class="notes-directory-children"><a href="studies/index.html">Study archive</a></div>
+            </details>
+            <details open>
+              <summary>Site Notes</summary>
+              <div class="notes-directory-children">
+                <a href="site-notes/index.html">Collection overview</a>
+                <a href="site-notes/a-place-for-notes.html">A place for notes</a>
+              </div>
+            </details>
+          </nav>
+        </details>
+      </aside>
+      <div class="notes-content">
+        <header class="blog-intro">
+          <p class="eyebrow">Notes / Lab Archive</p>
+          <h1>Notes</h1>
+          <p class="page-lede">Project logs, study notes, and observations arranged by where they belong—with recent changes kept close at hand.</p>
+        </header>
+        <section class="archive-section" aria-labelledby="collections-heading">
+          <div class="archive-heading">
+            <span>01</span>
+            <h2 id="collections-heading">Collections</h2>
+            <p>Browse the archive by project or subject.</p>
+          </div>
+          <div class="archive-collections">
+            <article class="archive-collection">
+              <p class="archive-collection-label">Project drawer</p>
+              <h2><a href="projects/index.html">Projects</a></h2>
+              <p>Build logs and technical notes grouped around a specific piece of work.</p>
+              <p class="archive-card-meta">1 project · 1 note</p>
+            </article>
+            <article class="archive-collection">
+              <p class="archive-collection-label">Subject drawer</p>
+              <h2><a href="studies/index.html">Studies</a></h2>
+              <p>Independent subjects and references that can apply across projects.</p>
+              <p class="archive-card-meta">Ready for future notes</p>
+            </article>
+            <article class="archive-collection">
+              <p class="archive-collection-label">Archive drawer</p>
+              <h2><a href="site-notes/index.html">Site Notes</a></h2>
+              <p>Notes about this portfolio and the archive itself.</p>
+              <p class="archive-card-meta">1 note · Updated Aug 26, 2026</p>
+            </article>
+          </div>
+        </section>
+        <section class="archive-section" aria-labelledby="projects-heading">
+          <div class="archive-heading">
+            <span>02</span>
+            <h2 id="projects-heading">Active projects</h2>
+          </div>
+          <div class="archive-collections">
+            <article class="archive-collection">
+              <p class="archive-collection-label">Poluto V1</p>
+              <h3><a href="projects/poluto-v1/index.html">Development environment</a></h3>
+              <p>Setup notes from a five-day robotics project using a Raspberry Pi.</p>
+              <p class="archive-card-meta">Draft · 1 note · Updated Aug 26, 2026</p>
+            </article>
+          </div>
+        </section>
+        <section class="archive-section" aria-labelledby="recent-heading">
+          <div class="archive-heading">
+            <span>03</span>
+            <h2 id="recent-heading">Recent updates</h2>
+            <p>The newest additions and revisions across the archive.</p>
+          </div>
+          <div class="recent-list">
+            <article class="recent-item">
+              <p class="recent-item-index">01</p>
+              <div>
+                <h3><a href="projects/poluto-v1/01-remote-access.html">Three SSH relationships</a></h3>
+                <p class="recent-path">Projects / Poluto V1</p>
+              </div>
+              <time class="recent-date" datetime="2026-08-26">Aug 26, 2026</time>
+            </article>
+            <article class="recent-item">
+              <p class="recent-item-index">02</p>
+              <div>
+                <h3><a href="site-notes/a-place-for-notes.html">A place for notes</a></h3>
+                <p class="recent-path">Site Notes</p>
+              </div>
+              <time class="recent-date" datetime="2026-08-26">Aug 26, 2026</time>
+            </article>
+          </div>
+        </section>
+      </div>
     </main>
   </body>
 </html>
