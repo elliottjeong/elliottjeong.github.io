@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Project logs, study notes, and site notes from Eunah Jeong.">
+    <meta name="description" content="Project logs, study notes, and thoughts from Eunah Jeong.">
     <title>Notes — Eunah Jeong</title>
     <link rel="stylesheet" href="../styles.css">
   </head>
@@ -13,9 +13,9 @@
       <a class="site-name" href="../index.html" aria-label="Eunah Jeong, home">Eunah Jeong</a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="../index.html">Home</a>
-        <a href="../career.html">Work &amp; Career</a>
-        <a href="../practice.html">Practice</a>
-        <a href="../bird-and-robot.html">Game</a>
+        <a href="../career.html">Profile</a>
+        <a href="../practice.html">Workbench</a>
+        <a href="../bird-and-robot.html">Path</a>
         <a href="index.html" aria-current="page">Notes</a>
       </nav>
     </header>
@@ -42,10 +42,10 @@
             <div class="notes-directory-children"><a href="studies/index.html">Study archive</a></div>
           </details>
           <details open>
-            <summary>Site Notes</summary>
+            <summary>Thoughts</summary>
             <div class="notes-directory-children">
-              <a href="site-notes/index.html">Collection overview</a>
-              <a href="site-notes/a-place-for-notes.html">A place for notes</a>
+              <a href="thoughts/index.html">All thoughts</a>
+              <a href="thoughts/a-place-for-notes.html">A place for notes</a>
             </div>
           </details>
         </nav>
@@ -71,10 +71,10 @@
               <div class="notes-directory-children"><a href="studies/index.html">Study archive</a></div>
             </details>
             <details open>
-              <summary>Site Notes</summary>
+              <summary>Thoughts</summary>
               <div class="notes-directory-children">
-                <a href="site-notes/index.html">Collection overview</a>
-                <a href="site-notes/a-place-for-notes.html">A place for notes</a>
+                <a href="thoughts/index.html">All thoughts</a>
+                <a href="thoughts/a-place-for-notes.html">A place for notes</a>
               </div>
             </details>
           </nav>
@@ -83,70 +83,56 @@
       <div class="notes-content">
         <header class="blog-intro">
           <p class="eyebrow">Notes / Lab Archive</p>
-          <h1>Notes</h1>
-          <p class="page-lede">Project logs, study notes, and observations arranged by where they belong—with recent changes kept close at hand.</p>
+          <h1>📜 Notes</h1>
+          <p class="page-lede">Project logs, study notes, and some random thoughts.</p>
         </header>
         <section class="archive-section" aria-labelledby="collections-heading">
           <div class="archive-heading">
             <span>01</span>
-            <h2 id="collections-heading">Collections</h2>
-            <p>Browse the archive by project or subject.</p>
+            <h2 id="collections-heading">Drawers</h2>
           </div>
           <div class="archive-collections">
-            <article class="archive-collection">
-              <p class="archive-collection-label">Project drawer</p>
-              <h2><a href="projects/index.html">Projects</a></h2>
-              <p>Build logs and technical notes grouped around a specific piece of work.</p>
+            <a class="archive-collection" href="projects/index.html">
+              <p class="archive-collection-label">Working on</p>
+              <h2>💻 Projects</h2>
               <p class="archive-card-meta">1 project · 1 note</p>
-            </article>
-            <article class="archive-collection">
-              <p class="archive-collection-label">Subject drawer</p>
-              <h2><a href="studies/index.html">Studies</a></h2>
-              <p>Independent subjects and references that can apply across projects.</p>
+            </a>
+            <a class="archive-collection" href="studies/index.html">
+              <p class="archive-collection-label">Getting lost in</p>
+              <h2>🔭 Studies</h2>
               <p class="archive-card-meta">Ready for future notes</p>
-            </article>
-            <article class="archive-collection">
-              <p class="archive-collection-label">Archive drawer</p>
-              <h2><a href="site-notes/index.html">Site Notes</a></h2>
-              <p>Notes about this portfolio and the archive itself.</p>
+            </a>
+            <a class="archive-collection" href="thoughts/index.html">
+              <p class="archive-collection-label">Processing</p>
+              <h2>💡 Thoughts</h2>
               <p class="archive-card-meta">1 note · Updated Aug 26, 2026</p>
-            </article>
+            </a>
           </div>
         </section>
-        <section class="archive-section" aria-labelledby="projects-heading">
+        <section class="archive-section archive-section--recent" aria-labelledby="recent-heading">
           <div class="archive-heading">
             <span>02</span>
-            <h2 id="projects-heading">Active projects</h2>
-          </div>
-          <div class="archive-collections">
-            <article class="archive-collection">
-              <p class="archive-collection-label">Poluto V1</p>
-              <h3><a href="projects/poluto-v1/index.html">Development environment</a></h3>
-              <p>Setup notes from a five-day robotics project using a Raspberry Pi.</p>
-              <p class="archive-card-meta">Draft · 1 note · Updated Aug 26, 2026</p>
-            </article>
-          </div>
-        </section>
-        <section class="archive-section" aria-labelledby="recent-heading">
-          <div class="archive-heading">
-            <span>03</span>
             <h2 id="recent-heading">Recent updates</h2>
-            <p>The newest additions and revisions across the archive.</p>
+            <p>New notes, some changes, and other recent activity.</p>
           </div>
           <div class="recent-list">
             <article class="recent-item">
-              <p class="recent-item-index">01</p>
-              <div>
+              <a class="recent-item-image" href="projects/poluto-v1/01-remote-access.html" aria-label="Read Three SSH relationships">
+                <img src="../assets/blog/recent-poluto-overview.webp" alt="Diagram of the Poluto V1 laptop, GitHub, and Raspberry Pi remote-access relationships">
+              </a>
+              <div class="recent-item-content">
                 <h3><a href="projects/poluto-v1/01-remote-access.html">Three SSH relationships</a></h3>
                 <p class="recent-path">Projects / Poluto V1</p>
               </div>
               <time class="recent-date" datetime="2026-08-26">Aug 26, 2026</time>
             </article>
             <article class="recent-item">
-              <p class="recent-item-index">02</p>
-              <div>
-                <h3><a href="site-notes/a-place-for-notes.html">A place for notes</a></h3>
-                <p class="recent-path">Site Notes</p>
+              <a class="recent-item-image" href="thoughts/a-place-for-notes.html" aria-label="Read A place for notes">
+                <img src="../assets/blog/recent-thoughts-lamp.webp" alt="Illustration of a small desk lamp casting light over an open notebook">
+              </a>
+              <div class="recent-item-content">
+                <h3><a href="thoughts/a-place-for-notes.html">A place for notes</a></h3>
+                <p class="recent-path">Thoughts</p>
               </div>
               <time class="recent-date" datetime="2026-08-26">Aug 26, 2026</time>
             </article>
