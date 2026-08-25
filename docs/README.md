@@ -11,3 +11,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 The site is intended for deployment with GitHub Pages.
+
+## Project documentation
+
+- [Blog project archive plan](blog-project-archive-plan.md)
