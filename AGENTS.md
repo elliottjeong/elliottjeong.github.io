@@ -16,6 +16,12 @@ Pages. It uses plain HTML and CSS and follows a museum-gallery visual direction.
   image markup.
 - Maintain responsive, keyboard-accessible layouts without horizontal overflow.
 
+## File naming
+
+- Use lowercase kebab-case for new media and document filenames: no spaces, underscores, or ambiguous abbreviations.
+- For ordered project assets, use `project-v#-topic-##-description.ext`; keep the sequence number two digits. Example: `poluto-v1-ssh-03-laptop-raspberry-pi-access.png`.
+- Use a clear project or series prefix, followed by the subject and a concise description. Omit the version or sequence only when it does not apply.
+
 ## Development and verification
 
 Serve the repository locally with:
