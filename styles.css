@@ -813,7 +813,7 @@ a {
 }
 
 .entrance-intro {
-  max-width: 600px;
+  max-width: 580px;
   margin: 0 auto 48px;
   text-align: left;
 }
@@ -840,7 +840,7 @@ a {
 }
 
 .entrance-copy {
-  max-width: 600px;
+  max-width: 580px;
   margin: 16px auto 0;
   color: var(--ink-soft);
   font-size: 1rem;

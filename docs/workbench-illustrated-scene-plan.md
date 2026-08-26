@@ -75,8 +75,10 @@ workbench/
 ```
 
 On GitHub Pages these resolve to clean URLs such as
-`/workbench/photography/`, while source links remain relative, for example
-`workbench/photography/` from `workbench.html`.
+`/workbench/photography/`. Source links remain relative and explicitly include
+`index.html` (for example, `workbench/photography/index.html` from
+`workbench.html`) so direct local-file previews also open the page rather than
+the containing directory.
 
 The scene should use separate lightweight SVG assets over one base-bench SVG.
 The initial drawings should be deliberately simple editorial line art: warm,
@@ -106,7 +108,7 @@ pixel size:
   data-annotation-side="right"
   data-annotation-offset-x="3"
   data-annotation-offset-y="-4"
-  href="workbench/photography/"
+  href="workbench/photography/index.html"
   style="
     --object-x: 69%;
     --object-y: 34%;
