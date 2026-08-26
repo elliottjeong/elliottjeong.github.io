@@ -15,3 +15,4 @@ The site is intended for deployment with GitHub Pages.
 ## Project documentation
 
 - [Blog project archive plan](blog-project-archive-plan.md)
+- [Illustrated Workbench plan](workbench-illustrated-scene-plan.md)

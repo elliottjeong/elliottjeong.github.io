@@ -3017,3 +3017,371 @@ kbd {
   .game-board { padding: 40px 10px 10px; }
   .game-legend { right: 10px; top: 11px; font-size: 0.56rem; }
 }
+
+/*
+  WORKBENCH SKILL PAGES
+  Every nested practice page shares a quiet breadcrumb and the existing archive
+  and record language. Wide image archives opt into the established practice shell.
+*/
+.skill-page-shell {
+  padding-top: 48px;
+}
+
+.skill-breadcrumb {
+  margin-bottom: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+
+.skill-breadcrumb a {
+  text-decoration: none;
+}
+
+.skill-breadcrumb a:hover {
+  color: var(--burgundy);
+  text-decoration: underline;
+}
+
+.skill-breadcrumb span[aria-hidden="true"] {
+  color: var(--brass);
+}
+
+.skill-page-shell .page-intro {
+  padding-bottom: 62px;
+}
+
+.skill-page-shell .content-section:last-child {
+  padding-bottom: 0;
+}
+
+@media (max-width: 620px) {
+  .skill-page-shell {
+    padding-top: 38px;
+  }
+
+  .skill-breadcrumb {
+    margin-bottom: 40px;
+  }
+}
+
+/*
+  ILLUSTRATED WORKBENCH
+  The scene keeps each practice as a native link. JavaScript only adds the
+  shared preview annotation and never becomes a navigation requirement.
+*/
+.workbench-shell {
+  width: min(calc(100% - 48px), var(--page-width));
+  margin: 0 auto;
+  padding: 72px 0 108px;
+}
+
+.workbench-intro {
+  max-width: 760px;
+  padding-bottom: 48px;
+}
+
+.workbench-instruction {
+  max-width: 620px;
+  margin-top: 24px;
+  color: var(--burgundy);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.055em;
+}
+
+.workbench-instruction--touch {
+  display: none;
+}
+
+.workbench-explorer {
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+
+.workbench-explorer__title {
+  margin-bottom: 14px;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.workbench-scene {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(57, 48, 38, 0.42);
+  background: #eee7db;
+  box-shadow: 0 20px 46px rgba(36, 21, 15, 0.14);
+}
+
+.workbench-scene::after {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  border: 7px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 35px rgba(36, 21, 15, 0.12);
+  content: "";
+  pointer-events: none;
+}
+
+.workbench-scene__base,
+.workbench-object-layer,
+.workbench-annotation-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.workbench-scene__base {
+  z-index: 0;
+}
+
+.workbench-object-layer {
+  z-index: 2;
+}
+
+.workbench-object {
+  position: absolute;
+  top: var(--object-y);
+  left: var(--object-x);
+  z-index: var(--object-layer);
+  width: var(--object-width);
+  min-width: 52px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 18%;
+  transform: translate(-50%, -50%) rotate(var(--object-rotation));
+  transform-origin: 50% 65%;
+  transition: filter 180ms ease, transform 180ms ease;
+}
+
+.workbench-object img {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  transition: filter 180ms ease;
+}
+
+.workbench-object:hover,
+.workbench-object.is-active {
+  filter: drop-shadow(0 10px 8px rgba(36, 21, 15, 0.22));
+  transform: translate(-50%, calc(-50% - 6px)) rotate(var(--object-rotation)) scale(1.035);
+}
+
+.workbench-object:focus-visible {
+  outline-color: var(--burgundy-dark);
+  outline-offset: 7px;
+}
+
+.workbench-object__name,
+.workbench-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.workbench-annotation-line {
+  z-index: 8;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.workbench-annotation-line path {
+  fill: none;
+  stroke: var(--burgundy);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  stroke-linecap: round;
+  stroke-width: 2.2;
+  vector-effect: non-scaling-stroke;
+  transition: stroke-dashoffset 360ms ease;
+}
+
+.workbench-scene.has-active-item .workbench-annotation-line path {
+  stroke-dashoffset: 0;
+}
+
+.workbench-annotation {
+  position: absolute;
+  z-index: 10;
+  width: min(238px, 29%);
+  padding: 12px 14px 13px;
+  opacity: 0;
+  color: var(--ink);
+  background: radial-gradient(ellipse at center, rgba(238, 231, 219, 0.98) 38%, rgba(238, 231, 219, 0.84) 72%, rgba(238, 231, 219, 0) 100%);
+  pointer-events: none;
+  transform: translateY(5px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.workbench-scene.has-active-item .workbench-annotation {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.workbench-annotation__eyebrow {
+  margin-bottom: 4px;
+  color: var(--burgundy);
+  font-family: var(--sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.workbench-annotation h3 {
+  font-size: clamp(1rem, 2vw, 1.38rem);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.workbench-annotation h3 + p {
+  margin-top: 7px;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: clamp(0.62rem, 1.15vw, 0.75rem);
+  line-height: 1.4;
+}
+
+.workbench-annotation a {
+  min-height: 38px;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--burgundy);
+  font-family: var(--sans);
+  font-size: clamp(0.64rem, 1.15vw, 0.75rem);
+  font-weight: 600;
+}
+
+.workbench-annotation a::after {
+  margin-left: 7px;
+  content: "→";
+  transition: transform 160ms ease;
+}
+
+.workbench-annotation a:hover::after {
+  transform: translateX(3px);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .workbench-instruction--pointer {
+    display: none;
+  }
+
+  .workbench-instruction--touch {
+    display: block;
+  }
+
+  .workbench-object:hover {
+    filter: none;
+    transform: translate(-50%, -50%) rotate(var(--object-rotation));
+  }
+
+  .workbench-object.is-active {
+    filter: drop-shadow(0 8px 7px rgba(36, 21, 15, 0.22));
+    transform: translate(-50%, calc(-50% - 4px)) rotate(var(--object-rotation)) scale(1.025);
+  }
+
+  .workbench-annotation a {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 620px) {
+  .workbench-shell {
+    width: min(calc(100% - 28px), var(--page-width));
+    padding: 52px 0 80px;
+  }
+
+  .workbench-intro {
+    padding-right: 6px;
+    padding-bottom: 38px;
+  }
+
+  .workbench-instruction {
+    margin-top: 19px;
+    font-size: 0.67rem;
+    line-height: 1.5;
+  }
+
+  .workbench-explorer {
+    padding-top: 16px;
+  }
+
+  .workbench-scene {
+    aspect-ratio: 4 / 5;
+  }
+
+  .workbench-object {
+    top: var(--mobile-object-y, var(--object-y));
+    left: var(--mobile-object-x, var(--object-x));
+    width: var(--mobile-object-width, var(--object-width));
+  }
+
+  .workbench-annotation {
+    width: min(190px, 47%);
+    padding: 9px 10px 10px;
+  }
+
+  .workbench-annotation h3 {
+    font-size: clamp(0.92rem, 4.1vw, 1.15rem);
+  }
+
+  .workbench-annotation h3 + p,
+  .workbench-annotation a {
+    font-size: clamp(0.59rem, 2.65vw, 0.7rem);
+  }
+}
+
+@media (max-width: 380px) {
+  .workbench-shell {
+    width: calc(100% - 20px);
+  }
+
+  .workbench-annotation {
+    width: 48%;
+    padding-inline: 8px;
+  }
+
+  .workbench-annotation__eyebrow {
+    font-size: 0.52rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workbench-object,
+  .workbench-object img,
+  .workbench-annotation,
+  .workbench-annotation a::after,
+  .workbench-annotation-line path {
+    transition: none;
+  }
+
+  .workbench-object:hover,
+  .workbench-object.is-active {
+    transform: translate(-50%, -50%) rotate(var(--object-rotation));
+  }
+
+  .workbench-annotation-line path {
+    stroke-dashoffset: 0;
+  }
+}
