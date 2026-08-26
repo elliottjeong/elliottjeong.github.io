@@ -2,10 +2,13 @@
 
 ## Status
 
-Phases 1–3 implemented on August 26, 2026. The six dedicated skill pages,
+Phases 1–5 implemented on August 27, 2026. The six dedicated skill pages,
 layered illustrated scene, semantic object links, shared annotation renderer,
-and pointer, keyboard, and touch interaction model are now in place. Phase 4
-visual tuning and the Phase 5 scalability proof remain future work.
+and pointer, keyboard, and touch interaction model are now in place. The
+scene has dedicated compact and small-phone composition rules, and a temporary
+Ceramics anchor confirmed that the renderer remains declarative. Local browser
+visual acceptance remains a manual release check when a browser connection is
+available.
 
 ## Purpose
 

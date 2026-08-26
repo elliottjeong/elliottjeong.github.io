@@ -813,7 +813,7 @@ a {
 }
 
 .entrance-intro {
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto 48px;
   text-align: left;
 }
@@ -840,7 +840,7 @@ a {
 }
 
 .entrance-copy {
-  max-width: 500px;
+  max-width: 600px;
   margin: 16px auto 0;
   color: var(--ink-soft);
   font-size: 1rem;
@@ -3113,33 +3113,25 @@ kbd {
 }
 
 .workbench-scene {
+  --table-left: 5%;
+  --table-top: 0%;
+  --table-width: 90%;
   position: relative;
   isolation: isolate;
   width: 100%;
-  aspect-ratio: 5 / 3;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
-  border: 1px solid rgba(57, 48, 38, 0.42);
-  background: #eee7db;
-  box-shadow: 0 20px 46px rgba(36, 21, 15, 0.14);
-}
-
-.workbench-scene::after {
-  position: absolute;
-  inset: 0;
-  z-index: 20;
-  border: 7px solid rgba(255, 255, 255, 0.14);
-  box-shadow: inset 0 0 35px rgba(36, 21, 15, 0.12);
-  content: "";
-  pointer-events: none;
+  background: #fff;
 }
 
 .workbench-scene__base,
-.workbench-object-layer,
-.workbench-annotation-line {
+.workbench-object-layer {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: var(--table-top);
+  left: var(--table-left);
+  width: var(--table-width);
+  height: auto;
+  aspect-ratio: 5 / 3;
 }
 
 .workbench-scene__base {
@@ -3161,6 +3153,8 @@ kbd {
   display: grid;
   place-items: center;
   border-radius: 18%;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transform: translate(-50%, -50%) rotate(var(--object-rotation));
   transform-origin: 50% 65%;
   transition: filter 180ms ease, transform 180ms ease;
@@ -3198,7 +3192,11 @@ kbd {
 }
 
 .workbench-annotation-line {
+  position: absolute;
+  inset: 0;
   z-index: 8;
+  width: 100%;
+  height: 100%;
   overflow: visible;
   pointer-events: none;
 }
@@ -3214,6 +3212,11 @@ kbd {
   transition: stroke-dashoffset 360ms ease;
 }
 
+.workbench-annotation-line marker path {
+  fill: var(--burgundy);
+  stroke: none;
+}
+
 .workbench-scene.has-active-item .workbench-annotation-line path {
   stroke-dashoffset: 0;
 }
@@ -3221,7 +3224,7 @@ kbd {
 .workbench-annotation {
   position: absolute;
   z-index: 10;
-  width: min(238px, 29%);
+  width: min(300px, 30%);
   padding: 12px 14px 13px;
   opacity: 0;
   color: var(--ink);
@@ -3307,6 +3310,29 @@ kbd {
 }
 
 @media (max-width: 620px) {
+  .workbench-scene {
+    --table-left: 3%;
+    --table-top: 8%;
+    --table-width: 94%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .workbench-annotation {
+    width: min(300px, 78%);
+    padding: 11px 12px 12px;
+  }
+
+  .workbench-annotation h3 {
+    font-size: clamp(0.92rem, 4.1vw, 1.15rem);
+  }
+
+  .workbench-annotation h3 + p,
+  .workbench-annotation a {
+    font-size: clamp(0.59rem, 2.65vw, 0.7rem);
+  }
+}
+
+@media (max-width: 620px) {
   .workbench-shell {
     width: min(calc(100% - 28px), var(--page-width));
     padding: 52px 0 80px;
@@ -3327,29 +3353,12 @@ kbd {
     padding-top: 16px;
   }
 
-  .workbench-scene {
-    aspect-ratio: 4 / 5;
-  }
-
   .workbench-object {
     top: var(--mobile-object-y, var(--object-y));
     left: var(--mobile-object-x, var(--object-x));
     width: var(--mobile-object-width, var(--object-width));
   }
 
-  .workbench-annotation {
-    width: min(190px, 47%);
-    padding: 9px 10px 10px;
-  }
-
-  .workbench-annotation h3 {
-    font-size: clamp(0.92rem, 4.1vw, 1.15rem);
-  }
-
-  .workbench-annotation h3 + p,
-  .workbench-annotation a {
-    font-size: clamp(0.59rem, 2.65vw, 0.7rem);
-  }
 }
 
 @media (max-width: 380px) {
@@ -3358,12 +3367,34 @@ kbd {
   }
 
   .workbench-annotation {
-    width: 48%;
+    width: 88%;
     padding-inline: 8px;
   }
 
   .workbench-annotation__eyebrow {
     font-size: 0.52rem;
+  }
+}
+
+@media (max-width: 410px) {
+  .workbench-scene {
+    --table-left: 2%;
+    --table-top: 6%;
+    --table-width: 96%;
+    aspect-ratio: 8 / 11;
+  }
+
+  .workbench-object {
+    min-width: 48px;
+    min-height: 44px;
+  }
+
+  .workbench-annotation {
+    width: min(300px, 88%);
+  }
+
+  .workbench-annotation-line path {
+    stroke-width: 1.7;
   }
 }
 

@@ -6,6 +6,7 @@
   }
 
   const annotation = scene.querySelector("[data-workbench-annotation]");
+  const table = scene.querySelector("[data-workbench-table]");
   const annotationTitle = scene.querySelector("[data-workbench-title]");
   const annotationDescription = scene.querySelector("[data-workbench-description]");
   const annotationLink = scene.querySelector("[data-workbench-link]");
@@ -13,7 +14,7 @@
   const annotationPath = scene.querySelector("[data-workbench-path]");
   const status = scene.querySelector("[data-workbench-status]");
   const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)");
-  const mobileLayout = window.matchMedia("(max-width: 620px)");
+  const compactAnnotations = window.matchMedia("(max-width: 620px)");
 
   let activeItem = null;
   let hoverDismissTimer = 0;
@@ -31,7 +32,7 @@
     item.querySelector(".workbench-object__name").textContent.trim();
 
   const getSide = (item) => {
-    if (mobileLayout.matches && item.dataset.mobileAnnotationSide) {
+    if (compactAnnotations.matches && item.dataset.mobileAnnotationSide) {
       return item.dataset.mobileAnnotationSide;
     }
 
@@ -44,10 +45,10 @@
     }
 
     const sceneRect = scene.getBoundingClientRect();
+    const tableRect = table.getBoundingClientRect();
     const itemRect = activeItem.getBoundingClientRect();
     const annotationRect = annotation.getBoundingClientRect();
     const side = getSide(activeItem);
-    const gap = Math.max(14, sceneRect.width * 0.022);
     const inset = Math.max(10, sceneRect.width * 0.014);
     const offsetX = Number(activeItem.dataset.annotationOffsetX || 0) * sceneRect.width / 100;
     const offsetY = Number(activeItem.dataset.annotationOffsetY || 0) * sceneRect.height / 100;
@@ -59,21 +60,39 @@
       centerX: itemRect.left - sceneRect.left + itemRect.width / 2,
       centerY: itemRect.top - sceneRect.top + itemRect.height / 2,
     };
+    const tableBox = {
+      left: tableRect.left - sceneRect.left,
+      right: tableRect.right - sceneRect.left,
+      top:
+        tableRect.top - sceneRect.top +
+        tableRect.height * Number(table.dataset.workbenchContentTop || 0) / 100,
+      bottom:
+        tableRect.top - sceneRect.top +
+        tableRect.height * Number(table.dataset.workbenchContentBottom || 100) / 100,
+    };
 
     let left = object.centerX - annotationRect.width / 2;
     let top = object.centerY - annotationRect.height / 2;
+    const verticalOverlap = annotationRect.height * 0.1;
+    const horizontalOverlap = annotationRect.width * 0.45;
 
-    if (side.includes("right")) {
-      left = object.right + gap;
-    } else if (side.includes("left")) {
-      left = object.left - annotationRect.width - gap;
+    if (side.endsWith("-left")) {
+      left -= annotationRect.width * 0.2;
+    } else if (side.endsWith("-right")) {
+      left += annotationRect.width * 0.2;
     }
 
     if (side.startsWith("top")) {
-      top = object.top - annotationRect.height - gap;
+      top = tableBox.top - annotationRect.height + verticalOverlap;
     } else if (side.startsWith("bottom")) {
-      top = object.bottom + gap;
-    } else {
+      top = tableBox.bottom - verticalOverlap;
+    } else if (side === "left") {
+      left = tableBox.left - annotationRect.width + horizontalOverlap;
+    } else if (side === "right") {
+      left = tableBox.right - horizontalOverlap;
+    }
+
+    if (side === "left" || side === "right") {
       top = object.centerY - annotationRect.height / 2;
     }
 
@@ -88,10 +107,10 @@
     let endX = left + annotationRect.width / 2;
     let endY = top + annotationRect.height / 2;
 
-    if (side.includes("right")) {
+    if (side === "right") {
       startX = object.right;
       endX = left;
-    } else if (side.includes("left")) {
+    } else if (side === "left") {
       startX = object.left;
       endX = left + annotationRect.width;
     }
@@ -109,11 +128,12 @@
 
     const deltaX = endX - startX;
     const deltaY = endY - startY;
-    const bend = Math.min(28, Math.hypot(deltaX, deltaY) * 0.14);
-    const controlOneX = startX + deltaX * 0.42;
-    const controlOneY = startY + deltaY * 0.2 - bend;
-    const controlTwoX = startX + deltaX * 0.62;
-    const controlTwoY = startY + deltaY * 0.82 + bend * 0.35;
+    const curveDirection = activeItem.dataset.id.length % 2 === 0 ? 1 : -1;
+    const bend = clamp(Math.hypot(deltaX, deltaY) * 0.16, 24, 64) * curveDirection;
+    const controlOneX = startX + deltaX * 0.26 + bend;
+    const controlOneY = startY + deltaY * 0.34;
+    const controlTwoX = startX + deltaX * 0.72 - bend * 0.55;
+    const controlTwoY = startY + deltaY * 0.76;
 
     annotationLine.setAttribute("viewBox", `0 0 ${sceneRect.width} ${sceneRect.height}`);
     annotationPath.setAttribute(
@@ -304,10 +324,10 @@
   const refreshPosition = () => window.requestAnimationFrame(setAnnotationPosition);
   window.addEventListener("resize", refreshPosition);
 
-  if (typeof mobileLayout.addEventListener === "function") {
-    mobileLayout.addEventListener("change", refreshPosition);
+  if (typeof compactAnnotations.addEventListener === "function") {
+    compactAnnotations.addEventListener("change", refreshPosition);
   } else {
-    mobileLayout.addListener(refreshPosition);
+    compactAnnotations.addListener(refreshPosition);
   }
 
   if ("ResizeObserver" in window) {
