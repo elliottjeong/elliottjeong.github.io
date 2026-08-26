@@ -3386,9 +3386,9 @@ kbd {
   }
 
   .workbench-object {
-    top: var(--mobile-object-y, var(--object-y));
-    left: var(--mobile-object-x, var(--object-x));
-    width: var(--mobile-object-width, var(--object-width));
+    top: var(--object-y);
+    left: var(--object-x);
+    width: var(--object-width);
   }
 
 }
