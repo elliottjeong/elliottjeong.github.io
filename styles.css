@@ -846,6 +846,38 @@ a {
   font-size: 1rem;
 }
 
+.entrance-hook {
+  font-size: 1.15em;
+  font-weight: 600;
+}
+
+.emphasis-soft {
+  font-weight: 600;
+}
+
+.closing-aura {
+  animation: textAura 4.5s ease-in-out infinite;
+}
+
+@keyframes textAura {
+  0%,
+  100% {
+    text-shadow:
+      0 0 4px rgba(218, 128, 96, 0.33),
+      0 0 10px rgba(218, 128, 96, 0.23),
+      0 0 18px rgba(218, 128, 96, 0.16),
+      0 0 26px rgba(218, 128, 96, 0.08);
+  }
+
+  50% {
+    text-shadow:
+      0 0 4px rgba(218, 128, 96, 0.38),
+      0 0 10px rgba(218, 128, 96, 0.26),
+      0 0 18px rgba(218, 128, 96, 0.17),
+      0 0 26px rgba(218, 128, 96, 0.11);
+  }
+}
+
 /* A small, linked vignette introduces the bird-and-robot game before the index. */
 .home-game-illustration {
   width: min(100%, 460px);

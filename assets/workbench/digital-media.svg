@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 240">
+  <defs>
+    <filter id="s" x="-20%" y="-25%" width="150%" height="175%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#24150f" flood-opacity=".23"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#s)" stroke="#29251f" stroke-linejoin="round">
+    <g stroke-width="4">
+      <path d="M109 11h171c8 0 14 6 14 14v126H95V25c0-8 6-14 14-14z" fill="#80543b"/>
+      <path d="M111 28h167v105H111z" fill="#e8e1d5"/>
+      <path d="M183 151v25m-39 12h101l-15-13h-72z" fill="#c7aa70"/>
+      <circle cx="194" cy="20" r="3" fill="#c7aa70" stroke-width="2"/>
+    </g>
+
+    <g font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">
+      <g transform="translate(120 36)">
+        <rect width="42" height="27" rx="4" fill="#eee7db" stroke-width="2.5"/>
+        <path d="M11 17c7-8 13-8 20-3l-6 2 4 5c-8 3-15 0-18-4z" fill="none" stroke="#c46b2d" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="21" cy="14" r="3" fill="#c46b2d" stroke="none"/>
+        <text x="21" y="25" fill="#29251f" stroke="none" font-size="5.5">BLENDER</text>
+      </g>
+      <g transform="translate(169 36)">
+        <rect width="42" height="27" rx="4" fill="#29251f" stroke-width="2.5"/>
+        <text x="21" y="17" fill="#e8e1d5" stroke="none" font-size="12">SP</text>
+        <text x="21" y="24" fill="#c7aa70" stroke="none" font-size="4.4">SUBSTANCE</text>
+      </g>
+      <g transform="translate(218 36)">
+        <rect width="42" height="27" rx="4" fill="#651f28" stroke-width="2.5"/>
+        <circle cx="21" cy="12" r="8" fill="none" stroke="#eee7db" stroke-width="1.8"/>
+        <text x="21" y="16" fill="#eee7db" stroke="none" font-family="Georgia, serif" font-size="12">U</text>
+        <text x="21" y="24" fill="#eee7db" stroke="none" font-size="4.5">UNREAL</text>
+      </g>
+
+      <g transform="translate(120 68)">
+        <rect width="42" height="27" rx="4" fill="#80543b" stroke-width="2.5"/>
+        <path d="M12 8l9-5 9 5-9 5zM12 8v10l9 5V13m9-5v10l-9 5" fill="none" stroke="#eee7db" stroke-width="1.8"/>
+        <text x="21" y="25" fill="#eee7db" stroke="none" font-size="4.8">UNITY</text>
+      </g>
+      <g transform="translate(169 68)">
+        <rect width="42" height="27" rx="4" fill="#1f3f65" stroke-width="2.5"/>
+        <text x="21" y="19" fill="#b9d6e8" stroke="none" font-size="15">Ps</text>
+      </g>
+      <g transform="translate(218 68)">
+        <rect width="42" height="27" rx="4" fill="#3f2921" stroke-width="2.5"/>
+        <text x="21" y="19" fill="#d8a04a" stroke="none" font-size="15">Ai</text>
+      </g>
+
+      <g transform="translate(120 100)">
+        <rect width="42" height="27" rx="4" fill="#3d2c55" stroke-width="2.5"/>
+        <text x="21" y="19" fill="#d4bce8" stroke="none" font-size="14">Pr</text>
+      </g>
+      <g transform="translate(169 100)">
+        <rect width="42" height="27" rx="4" fill="#292947" stroke-width="2.5"/>
+        <text x="21" y="19" fill="#c9c4e8" stroke="none" font-size="14">Ae</text>
+      </g>
+      <g transform="translate(218 100)">
+        <rect width="42" height="27" rx="4" fill="#eee7db" stroke-width="2.5"/>
+        <circle cx="21" cy="13" r="4" fill="#c7aa70" stroke="none"/>
+        <path d="M21 13l-9-6a11 11 0 0 1 18 0z" fill="#651f28" stroke="none"/>
+        <path d="M21 13l9-6a11 11 0 0 1 0 12z" fill="#80543b" stroke="none"/>
+        <path d="M21 13l9 6a11 11 0 0 1-18 0z" fill="#29251f" stroke="none"/>
+        <text x="21" y="25" fill="#29251f" stroke="none" font-size="4.4">DAVINCI</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(3 121) scale(.84)" filter="url(#s)" stroke="#29251f" stroke-width="4.8" stroke-linejoin="round">
+    <path d="M17 27h37l11-15h42l12 15h29c8 0 13 6 13 13v46c0 8-5 13-13 13H17C10 99 5 94 5 86V40c0-7 5-13 12-13z" fill="#651f28"/>
+    <circle cx="83" cy="64" r="29" fill="#e8e1d5"/>
+    <circle cx="83" cy="64" r="19" fill="#29251f"/>
+    <circle cx="77" cy="58" r="7" fill="#9d7d45" stroke-width="2.4"/>
+    <circle cx="139" cy="44" r="4" fill="#c7aa70" stroke-width="2.4"/>
+  </g>
+
+  <g transform="translate(287 30)" filter="url(#s)" stroke="#29251f" stroke-linejoin="round" stroke-linecap="round">
+    <g stroke-width="4">
+      <path d="M16 18h17v156H16zM105 18h17v156h-17z" fill="#80543b"/>
+      <path d="M27 51h84v14H27z" fill="#c7aa70"/>
+      <path d="M55 43h29v34H55z" fill="#651f28"/>
+      <path d="M63 77h13l-3 14h-7z" fill="#c7aa70"/>
+      <path d="M35 132h72l8 14H27z" fill="#e8e1d5"/>
+      <path d="M8 171h123l-7 33H15z" fill="#80543b"/>
+      <path d="M25 183h27v10H25z" fill="#29251f"/>
+      <path d="M91 183h24M91 192h18" fill="none" stroke="#c7aa70" stroke-width="3"/>
+    </g>
+
+    <g stroke-width="3.5">
+      <circle cx="7" cy="55" r="24" fill="#e8e1d5"/>
+      <circle cx="7" cy="55" r="17" fill="#651f28"/>
+      <circle cx="7" cy="55" r="6" fill="#c7aa70"/>
+      <path d="M7 31c18 0 31 7 42 20" fill="none" stroke="#651f28"/>
+    </g>
+
+    <g transform="translate(43 94)" stroke-width="2.5">
+      <text x="28" y="28" fill="#651f28" stroke="none" font-family="Arial, sans-serif" font-size="28" font-weight="800" text-anchor="middle">3D</text>
+      <path d="M3 34h53" fill="none"/>
+    </g>
+  </g>
+</svg>
