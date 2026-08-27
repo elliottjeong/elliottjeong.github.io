@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="150%" height="170%">
+      <feDropShadow dx="1" dy="7" stdDeviation="5" flood-color="#24150f" flood-opacity=".18"/>
+    </filter>
+    <filter id="small-shadow" x="-30%" y="-30%" width="170%" height="190%">
+      <feDropShadow dx="1" dy="4" stdDeviation="3" flood-color="#24150f" flood-opacity=".16"/>
+    </filter>
+    <pattern id="paper-grid" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M12 0H0v12" fill="none" stroke="#9d7d45" stroke-width=".7" opacity=".2"/>
+    </pattern>
+  </defs>
+  <rect x="8" y="8" width="1184" height="464" rx="25" fill="#f8f5ef" stroke="#9d7d45" stroke-width="2"/>
+  <path d="M26 94h1148" fill="none" stroke="#9d7d45" stroke-width="2" stroke-dasharray="3 9" opacity=".55"/>
+  <path d="M286 28v424" fill="none" stroke="#651f28" stroke-width="2" stroke-dasharray="6 10" opacity=".38"/>
+  <g font-family="Arial, sans-serif" fill="#651f28" font-weight="700" letter-spacing="2">
+    <text x="34" y="55" font-size="15">HOME FASHION</text>
+    <text x="318" y="55" font-size="15">GARMENT MAKING</text>
+  </g>
+  <g font-family="Arial, sans-serif" fill="#6f665a" font-size="11" letter-spacing="1">
+    <text x="34" y="75">USEFUL OBJECTS</text>
+    <text x="318" y="75">FROM BASIC FORMS TO COMPLEX CONSTRUCTION</text>
+  </g>
+  <path d="M77 417c72 24 133 17 186-9 55-27 105-27 155-3 55 27 110 29 164 2 56-28 112-29 169-3 58 27 119 26 183-5 58-28 120-26 190 8" fill="none" stroke="#651f28" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 11"/>
+  <circle cx="77" cy="417" r="7" fill="#c7aa70" stroke="#29251f" stroke-width="2"/>
+  <path d="M1124 407l-13-8v16z" fill="#651f28"/>
+
+  <!-- Home fashion -->
+  <g filter="url(#small-shadow)" stroke="#29251f" stroke-linejoin="round">
+    <g transform="translate(0 30)">
+      <path d="M48 166h76v108H48z" fill="#c7aa70" stroke-width="4"/>
+      <path d="M58 166c0-29 12-43 28-43s28 14 28 43" fill="none" stroke-width="4"/>
+      <path d="M58 201h56M86 166v108" fill="none" stroke="#651f28" stroke-width="3" opacity=".75"/>
+      <path d="M169 169h54l20 105h-94z" fill="#651f28" stroke-width="4"/>
+      <path d="M176 169v-22c0-17 10-26 20-26s20 9 20 26v22M160 235h72" fill="none" stroke-width="4"/>
+      <path d="M174 199h44M168 235h57" fill="none" stroke="#c7aa70" stroke-width="3" opacity=".82"/>
+    </g>
+  </g>
+
+  <!-- Garment making level 1 -->
+  <g transform="rotate(-3 365 148)" filter="url(#small-shadow)" stroke="#9d7d45" stroke-width="2" stroke-dasharray="6 6" fill="url(#paper-grid)">
+    <path d="M315 106h54v83h-54z"/><path d="M383 106h45l22 31-20 20v32h-47z"/><path d="M318 203h132l-12 41H330z"/>
+  </g>
+  <g filter="url(#shadow)" stroke="#29251f" stroke-linejoin="round">
+    <path d="M337 199h74l25 28-21 17-11-14v77h-60v-77l-11 14-21-17z" fill="#e8e1d5" stroke-width="4"/>
+    <path d="M337 252h74M360 199c2 15 27 15 29 0" fill="none" stroke="#651f28" stroke-width="3"/>
+    <path d="M476 194h54l35 128h-124z" fill="#c7aa70" stroke-width="4"/>
+    <path d="M454 260h99m-105 29h112M478 194c1 14 49 14 51 0" fill="none" stroke="#651f28" stroke-width="3"/>
+  </g>
+  <!-- Garment making level 2 -->
+  <g transform="translate(0 20) translate(730 245) scale(1.18) translate(-730 -245) rotate(2 675 148)" filter="url(#small-shadow)" stroke="#9d7d45" stroke-width="2" stroke-dasharray="5 5" fill="url(#paper-grid)">
+    <path d="M604 108h42v80h-42z"/><path d="M656 108h38l18 24-17 17v39h-39z"/><path d="M706 108h25l8 28-20 15-13-16z"/><path d="M752 108h62l8 80h-70z"/>
+  </g>
+  <g transform="translate(0 20) translate(730 245) scale(1.18) translate(-730 -245)" filter="url(#shadow)" stroke="#29251f" stroke-linejoin="round">
+    <path d="M617 210 646 185h45l29 25-20 20-10-11v64h-43v-64l-10 11z" fill="#80543b" stroke-width="4"/>
+    <path d="M646 185l22 21 23-21M668 206v77M647 244h43" fill="none" stroke="#eee7db" stroke-width="3" stroke-linecap="round"/>
+    <path d="M649 218h15v17h-15z" fill="#c7aa70" stroke-width="2.5"/>
+    <path d="M620 222h17m63 0h17" fill="none" stroke="#c7aa70" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="676" cy="221" r="2.5" fill="#c7aa70" stroke-width="1.5"/><circle cx="676" cy="233" r="2.5" fill="#c7aa70" stroke-width="1.5"/>
+    <path d="M752 204h84l-7 83-32-4-4-43-5 43-32 4z" fill="#e8e1d5" stroke-width="4"/>
+    <path d="M752 225h83M765 244h57M770 252l-8 24m52-24 8 24M793 225v26M760 274h28m11 0h28" fill="none" stroke="#651f28" stroke-width="3" stroke-linecap="round"/>
+    <path d="M758 229c7 1 13 6 17 14m53-14c-7 1-13 6-17 14" fill="none" stroke="#9d7d45" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <!-- Garment making level 3 -->
+  <g transform="rotate(-2 965 146)" filter="url(#small-shadow)" stroke="#9d7d45" stroke-width="1.8" stroke-dasharray="5 5" fill="url(#paper-grid)">
+    <path d="M882 102h31v88h-31z"/><path d="M921 102h27l13 20-13 16v52h-27z"/><path d="M969 102h24v88h-24z"/><path d="M1001 102h35l8 88h-43z"/><path d="M1051 102h27v88h-27z"/><path d="M1086 102h55l8 88h-63z"/><path d="M882 201h31l-5 43h-31z"/><path d="M921 201h62l-9 43h-53z"/><path d="M991 201h33l-5 43h-31z"/><path d="M1032 201h79l-8 43h-71z"/>
+  </g>
+  <g filter="url(#shadow)" stroke="#29251f" stroke-linejoin="round">
+    <path d="M946 178c0-28 9-42 21-42s21 14 21 42l-9 15h-24z" fill="#c7aa70" stroke-width="4"/>
+    <path d="M900 211 936 172h62l37 39-27 29-14-20v112h-57V220l-13 20z" fill="#651f28" stroke-width="4"/>
+    <path d="M936 172l31 32 31-32M967 204v128" fill="#c7aa70" stroke-width="4"/>
+    <path d="M953 178c2-14 8-22 14-22s12 8 14 22M946 202c6 5 13 7 21 7s15-2 21-7M953 203v17m28-17v17" fill="none" stroke="#e8e1d5" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M967 211v112" fill="none" stroke="#29251f" stroke-width="2" stroke-dasharray="2 4"/>
+    <circle cx="953" cy="222" r="3" fill="#c7aa70" stroke-width="1.5"/><circle cx="981" cy="222" r="3" fill="#c7aa70" stroke-width="1.5"/>
+    <path d="M941 225h18l-3 17h-15zm34 0h18v17h-15z" fill="#80543b" stroke="#c7aa70" stroke-width="2"/>
+    <path d="M943 244h20v28h-20zm29 0h20v28h-20z" fill="#e8e1d5" stroke-width="3"/>
+    <path d="M938 297h56M929 220h76M907 229l15 12m105-12-15 12M945 288h16m12 0h16" fill="none" stroke="#e8e1d5" stroke-width="3" stroke-linecap="round"/>
+    <path d="M1055 188h74l-7 145h-31l-3-88-4 88h-36z" fill="#80543b" stroke-width="4"/>
+    <path d="M1054 224h72M1065 248h51M1069 257l-10 31m48-31 10 31M1088 188v57M1065 225v14m23-14v14m24-14v14M1059 270h18v20h-20m54-20h-18v20h20M1060 302h24m9 0h23" fill="none" stroke="#c7aa70" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="1088" cy="234" r="3" fill="#c7aa70" stroke-width="1.5"/><path d="M1088 244v78" fill="none" stroke="#29251f" stroke-width="2" stroke-dasharray="2 4"/>
+  </g>
+  <g filter="url(#small-shadow)" font-family="Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(137 395)"><rect x="-54" y="-17" width="108" height="34" rx="17" fill="#f5e6bb" stroke="#9d7d45" stroke-width="2"/><text y="5" fill="#29251f" font-size="13" font-weight="700">LEVEL 1</text></g>
+    <g transform="translate(437 395)"><rect x="-54" y="-17" width="108" height="34" rx="17" fill="#d9e8d3" stroke="#4f7e4f" stroke-width="2"/><text y="5" fill="#29251f" font-size="13" font-weight="700">LEVEL 1</text></g>
+    <g transform="translate(711 395)"><rect x="-54" y="-17" width="108" height="34" rx="17" fill="#c7dcbf" stroke="#4f7e4f" stroke-width="2"/><text y="5" fill="#29251f" font-size="13" font-weight="700">LEVEL 2</text></g>
+    <g transform="translate(975 395)"><rect x="-54" y="-17" width="108" height="34" rx="17" fill="#afcca5" stroke="#4f7e4f" stroke-width="2"/><text y="5" fill="#29251f" font-size="13" font-weight="700">LEVEL 3</text></g>
+  </g>
+  <g font-family="Arial, sans-serif" text-anchor="middle" fill="#6f665a" font-size="10" letter-spacing=".6">
+    <text x="137" y="445">STRAIGHT SEAMS · FINISHED EDGES</text><text x="437" y="445">SIMPLE SEAMS · SILHOUETTES</text><text x="711" y="445">COLLARS · POCKETS · WAISTBANDS</text><text x="975" y="445">HOODS · CLOSURES · LAYERS</text>
+  </g>
+</svg>
