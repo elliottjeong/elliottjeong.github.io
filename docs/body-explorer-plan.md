@@ -2,11 +2,25 @@
 
 ## Status
 
-Planning approved on August 30, 2026. No production files have been created.
-The current direction is a diagram-first educational resource navigator placed
-under Robotics. The first content collection will be STRENGTHTAPE instructional
-videos, but the product and data model must remain open to anatomy, exercise,
-and rehabilitation resources.
+Planning was approved on August 30, 2026, and implementation began immediately
+afterward. Phases 1, 2A, 2B, and the Phase 3 Hand & wrist vertical slice are
+implemented in production files under `workbench/robotics/body-explorer/`.
+
+The current implementation includes the project entry, static explorer shell,
+front/back body overview, the user-provided final raster artwork, a separate
+inline SVG interaction map with semantic hotspot IDs, hover/focus/selected
+states, data-driven paired left/right highlighting, URL-backed overview and
+regional states, responsive orientation controls, the Hand & wrist palm/dorsal
+study plate, its two resources, and on-demand video loading.
+
+The next feature implementation begins at **Phase 4A — Knee vertical slice**.
+Before publication, complete a final visual browser pass at the documented
+wide, tablet, `620px`, `410px`, and `320px` acceptance widths.
+
+The product remains a diagram-first educational resource navigator placed
+under Robotics. STRENGTHTAPE instructional videos are the first content
+collection, but the product and data model must remain open to anatomy,
+exercise, and rehabilitation resources.
 
 ## Purpose
 
@@ -96,7 +110,28 @@ Visitors choose a visible body region directly.
 Do not place a dashboard, chat interface, large filter panel, or result grid in
 front of the body. The illustration is the navigation.
 
-### 2. Use a consistent three-level hierarchy
+### 2. Separate final artwork from interaction geometry
+
+The full-body character is a final visual asset supplied by the project owner.
+It must not be redrawn, approximated, converted to SVG, retouched, or generated
+again. The page uses two independent layers inside one responsive container:
+
+1. **Visual layer** — the supplied raster character image, displayed only as
+   artwork with no interaction logic.
+2. **Interaction layer** — a transparent inline SVG whose paths provide
+   semantic IDs, pointer and keyboard targets, focus treatment, hover
+   highlighting, and selected state.
+
+The SVG is not an illustration and must not reproduce the character. Both
+layers share a fixed coordinate contract so resizing the container scales them
+together without alignment drift.
+
+The overview may use visually precise areas such as left wrist, right wrist,
+left hand, and right hand while mapping each area to a broader navigation
+region such as Hand & wrist. Unique hotspot identity and navigation region are
+related but must remain separate concepts.
+
+### 3. Use a consistent three-level hierarchy
 
 The complete interaction has three levels:
 
@@ -109,7 +144,7 @@ The complete interaction has three levels:
 The transition should feel like moving closer to an illustrated study plate,
 not opening unrelated application screens.
 
-### 3. Begin broad, then deepen each region
+### 4. Begin broad, then deepen each region
 
 The full-body overview should exist from the beginning because the project is
 also a personal taping study atlas. Development can still proceed as vertical
@@ -122,12 +157,14 @@ slices:
 - then Torso & back;
 - then Hip & thigh.
 
-On the public version, an overview region should become active only when its
-regional detail illustration is usable. Do not create dead hotspots. Regions
-that are not ready may be drawn normally without hover treatment or labeled
-quietly as planned work outside the diagram.
+On the public version, an overview hotspot may still support hover, focus, and
+selection before its regional detail is ready, but it must respond with an
+explicit planned-resource state. Only an available region may navigate into a
+regional detail. Do not create a clickable area that produces no visible or
+announced result, and do not style a planned region as if its full detail flow
+were already available.
 
-### 4. Keep taping as the first collection, not the product identity
+### 5. Keep taping as the first collection, not the product identity
 
 `Body Explorer` remains the product name. `Taping techniques` is the first
 resource collection attached to its regions.
@@ -143,7 +180,7 @@ Future resource types can include:
 Only resource types that contain material for the selected area should appear.
 Do not render empty tabs merely to advertise future scope.
 
-### 5. Omit search and LLM features from the initial release
+### 6. Omit search and LLM features from the initial release
 
 The body is already a visible, finite navigation space. Search, fuzzy matching,
 and LLM interpretation would add interface and infrastructure complexity before
@@ -218,15 +255,22 @@ only after a visitor selects a video. Never autoplay.
 
 ### Full-body character
 
-The overview character should feel friendly and memorable without becoming a
-mascot or a game avatar.
+`assets/workbench/robotics/body-explorer/body-default.png` is the approved and
+final full-body visual artwork. It contains the front and back characters in one
+`1224 × 1285` transparent raster asset.
 
-- Use rounded, slightly stylized proportions.
-- Minimize gender-coded chest, waist, hip, facial, hair, and clothing features.
-- Keep the stance neutral and symmetrical so hotspots are easy to locate.
-- Avoid photorealistic skin, exposed musculature, and clinical textbook detail.
-- Use calm facial or featureless treatment so attention stays on the body map.
-- Draw front and back figures in one consistent scale and pose family.
+The asset is immutable for this implementation:
+
+- do not redraw it as SVG;
+- do not approximate or recreate it with HTML, CSS, canvas, or generated art;
+- do not retouch, crop, recolor, resample, or otherwise modify its pixel data;
+- do not embed interface labels, titles, instructions, or FRONT/BACK text in it;
+- preserve the original file as the source of truth for the overview character.
+
+Front and back views are produced by positioning the unchanged composite image
+inside fixed-aspect-ratio containers. Any future replacement must be supplied
+as a new approved final asset; implementation work may then recalibrate the
+overlay coordinates but must not edit the replacement artwork.
 
 ### Regional illustrations
 
@@ -245,10 +289,19 @@ mascot or a game avatar.
 - Use soft zoom, crossfade, or drawn-line transitions sparingly.
 - In `prefers-reduced-motion`, switch views without zoom or path animation.
 
-SVG is preferred for crisp scaling and hotspot alignment. Keep the illustration
-and interaction layers separate: an optimized base illustration can remain an
-external asset while an inline SVG overlay supplies the interactive hotspot
-paths and focus styling.
+Artwork format and interaction format are deliberately independent. The current
+full-body visual layer is the external raster `<img>`. Its transparent inline
+SVG overlay supplies only interaction paths, semantic IDs, accessible names,
+focus styling, hover styling, and selected styling.
+
+Each front/back container uses the same `510 × 1285` interaction coordinate
+space as its crop of the final artwork. The `<img>` and `<svg>` occupy the exact
+same container and resize together. SVG paths must never contain
+representational character artwork.
+
+Regional detail artwork may use raster or vector assets according to its
+approved source, but it must follow the same separation rule: final artwork in
+the visual layer and a transparent SVG hit map in the interaction layer.
 
 ## Initial Region Hierarchy
 
@@ -300,8 +353,11 @@ Body
 ```
 
 The hierarchy reflects the initial playlist rather than claiming complete body
-coverage. Head and face are not active in the initial data set. The upper
-trapezius may be reachable from Shoulder, arm & elbow rather than implying a
+coverage. Head and neck semantic shapes may exist in the overview hit map for
+future compatibility, but they are not active content regions in the initial
+data set. They should use a null or explicit future region target and a planned
+availability state rather than being incorrectly mapped to Torso & back. The
+upper trapezius may be reachable from Shoulder, arm & elbow without implying a
 complete Neck collection.
 
 ## Initial Content Inventory
@@ -408,8 +464,12 @@ hotspots: [
     id,
     viewId,
     regionId,
+    orientation,
+    side,
+    highlightGroupId,
     label,
-    description
+    description,
+    availability
   }
 ]
 
@@ -432,6 +492,19 @@ Important rules:
 
 - Many resources may connect to one hotspot.
 - One resource may connect to multiple hotspots.
+- Every SVG path has one unique semantic `id`, such as
+  `front-left-wrist` or `back-right-shoulder`.
+- A precise overview hotspot maps to one broader `regionId`; for example,
+  `front-left-hand` maps to `hand-wrist`. A future-only semantic area may keep
+  `regionId: null` until a legitimate navigation region exists.
+- Left/right counterparts keep distinct IDs but share one
+  `highlightGroupId`. Hover or focus on either counterpart highlights both.
+- Selection preserves the exact hotspot ID even when a paired highlight is
+  shown.
+- Phase 2B must move paired-highlight relationships into data rather than
+  relying on parsing the left/right words from an ID.
+- `availability` controls whether selection shows resources, navigates to a
+  regional detail, or explains that related resources are planned.
 - Diagram labels and source titles are separate fields.
 - A condition term is metadata, not a diagnosis result.
 - The initial `type` is `taping`; future types should not change the region or
@@ -449,19 +522,42 @@ selectedHotspot null | hotspot ID
 selectedResource null | resource ID
 ```
 
-Use event delegation and `data-*` identifiers. Adding a hotspot or resource
-must not require a new event listener or item-specific JavaScript branch.
+Temporary pointer and focus highlighting does not need to be persisted in the
+state object. It is derived from the active SVG path and its
+`highlightGroupId`. A paired highlight never changes `selectedHotspot` until a
+visitor activates a path.
+
+Use `data-*` identifiers and one generic interaction setup. Adding a hotspot or
+resource must not require item-specific JavaScript branches.
+
+The layer contract is:
+
+```text
+.body-view__plate
+├── img.body-artwork       visual only; pointer events disabled
+└── svg.body-hit-map       transparent interaction layer
+    └── path.body-hit-area semantic pointer/keyboard targets
+```
+
+Hover and focus may highlight a complete left/right pair. Click, Enter, or
+Space selects the exact activated hotspot, records it in state, updates the
+visible selection label, updates the related region state, and emits a generic
+selection-change event for future resource panels.
 
 Reflect meaningful navigation in the URL hash, for example:
 
 ```text
 #body
-#hand-wrist
+#body/front
+#body/front/front-left-wrist
+#hand-wrist/palm
 #hand-wrist/thumb-side-wrist
 ```
 
-Hash state allows direct links and makes browser Back/Forward behavior
-predictable without a router or framework.
+Phase 2B must finalize which overview selections are meaningful enough to enter
+the hash. Regional view, orientation, and selected regional hotspot must be
+deep-linkable. Hash state allows direct links and makes browser Back/Forward
+behavior predictable without a router or framework.
 
 The non-JavaScript fallback should expose an ordinary linked region directory
 and the initial resource links. JavaScript progressively enhances it into the
@@ -482,28 +578,30 @@ assets/
 └── workbench/
     └── robotics/
         └── body-explorer/
-            ├── body-explorer-body-front.svg
-            ├── body-explorer-body-back.svg
-            ├── body-explorer-hand-palm.svg
-            ├── body-explorer-hand-back.svg
-            ├── body-explorer-knee-front.svg
-            ├── body-explorer-knee-back.svg
-            ├── body-explorer-lower-leg-front.svg
-            ├── body-explorer-lower-leg-back.svg
-            ├── body-explorer-foot-top.svg
-            └── body-explorer-foot-sole.svg
+            ├── body-default.png
+            └── regional/
+                └── approved detail artwork added by phase
 ```
 
-Add further regional illustration files only as those views are implemented.
-Keep shared and page-specific visual rules in `styles.css` according to the
+The full-body hit maps remain inline in the explorer HTML so paths are directly
+focusable, styleable, and addressable by semantic ID. Do not restore the old
+front/back character SVG files as visual dependencies. Update the Robotics
+project preview to use the final raster artwork as part of Phase 2B.
+
+Add regional artwork files only as those views are implemented and approved.
+Their hit maps may remain inline with the corresponding view markup. Keep
+shared and page-specific visual rules in `styles.css` according to the
 repository convention.
 
 ## Responsive Behavior
 
 ### Wide screens
 
-- Use a wide explorer shell, approximately `1280px` to `1440px` maximum.
+- Use the portfolio-wide `--page-width` maximum of `1120px` so the explorer
+  aligns with the site header rule.
 - Show front and back body figures together.
+- Keep each full-body artwork plate near `220px` wide so the diagram remains
+  central without making the section excessively tall.
 - In a detail view, place the illustration and resource panel side by side.
 - Keep the illustration visually dominant.
 
@@ -511,6 +609,9 @@ repository convention.
 
 - Keep one body orientation visible at a time if side-by-side figures become
   too small.
+- Use the FRONT/BACK segmented control below `720px` and keep the visible
+  full-body plate at or below `220px`; use approximately `210px` on the
+  narrowest layout.
 - Place the resource panel below the detailed illustration.
 - Use a persistent breadcrumb or compact back control above the illustration.
 - Maintain touch targets of at least practical finger size even when the
@@ -565,7 +666,7 @@ endorsement unless those relationships actually exist.
 
 ## Implementation Phases
 
-### Phase 1 — Project entry and static shell
+### Phase 1 — Project entry and static shell — Implemented
 
 1. Add a featured Body Explorer record to `workbench/robotics/index.html`.
 2. Create the nested explorer page with the shared header, Robotics breadcrumb,
@@ -573,40 +674,106 @@ endorsement unless those relationships actually exist.
 3. Add the initial data file with stable region, hotspot, and resource IDs.
 4. Add the two general taping resources outside the body hierarchy.
 
-### Phase 2 — Full-body overview
+Acceptance cleanup remains: replace the old front/back SVG artwork references
+in the Robotics project preview with the final raster artwork during Phase 2B.
 
-1. Create the front and back gender-neutral character illustrations.
-2. Add the interactive hotspot overlay for the major region groups.
-3. Implement hover, focus, selected, and unavailable-region states.
-4. Implement URL hash state and Back/Forward behavior.
-5. Verify the overview at desktop, tablet, and narrow-phone widths.
+### Phase 2A — Full-body visual and interaction foundation — Implemented
 
-### Phase 3 — Hand & wrist vertical slice
+1. Integrate the supplied `body-default.png` without modifying its pixel data.
+2. Present front and back crops from the same final asset.
+3. Overlay separate transparent inline SVG hit maps in the same responsive
+   containers.
+4. Add semantic paths for head, neck, shoulder, upper arm, elbow, forearm,
+   wrist, hand, chest/upper back, abdomen/lower back, pelvis, thigh, knee,
+   calf, ankle, and foot as applicable to each orientation.
+5. Implement pointer, keyboard, focus, selected, and planned-resource feedback.
+6. Highlight both left/right counterparts when either receives hover or focus
+   while preserving the exact activated hotspot on selection.
+7. Keep FRONT/BACK and all explanatory typography in HTML/CSS rather than in
+   the artwork.
 
-1. Create palm and back-of-hand regional illustrations.
-2. Add thumb-side wrist and central palm-side wrist hotspots.
-3. Connect De Quervain and Carpal Tunnel resources.
-4. Implement the resource panel and on-demand video behavior.
-5. Validate the entire body-to-region-to-resource interaction before duplicating
-   it for other regions.
+### Phase 2B — Overview hardening — Implemented
 
-### Phase 4 — High-density lower-body regions
+Do not rebuild Phases 1 or 2A. Resume implementation here.
 
-1. Add Knee, including front, inner, outer, and below-patella hotspots.
-2. Add Lower leg with medial shin, lateral shin, calf, and Achilles areas.
-3. Add Foot & ankle with top and sole views.
-4. Connect the 17 knee, lower-leg, ankle, and foot videos.
+1. Add explicit `orientation`, `side`, and `highlightGroupId` hotspot data and
+   remove paired-highlight dependence on parsing ID strings.
+2. Confirm the mapping from each precise semantic hotspot to its broader
+   navigation `regionId`.
+3. Finalize planned/available behavior. Planned hotspots may be selectable when
+   they provide clear planned-resource feedback, but they must not imply that a
+   missing regional detail is already available.
+4. Define and implement meaningful overview selection hashes and verify browser
+   Back/Forward behavior.
+5. Update the Robotics project preview to use the final raster artwork and
+   remove obsolete visual dependencies on the old character SVGs.
+6. Verify artwork/hit-map alignment, paired hover/focus, keyboard activation,
+   and layout at wide desktop, tablet, `620px`, `410px`, and `320px` widths.
 
-### Phase 5 — Remaining regional views
+### Phase 3 — Hand & wrist end-to-end vertical slice — Implemented
 
-1. Add Shoulder, arm & elbow.
-2. Add Torso & back.
-3. Add Hip & thigh.
-4. Connect the remaining playlist resources.
-5. Confirm that every one of the 45 videos appears once in the data inventory
-   and in at least one reachable explorer location.
+1. Integrate approved palm and back-of-hand regional artwork without coupling
+   its pixel or vector content to interaction logic.
+2. Add separate transparent hit maps for thumb-side wrist and central
+   palm-side wrist.
+3. Connect the De Quervain and Carpal Tunnel resources.
+4. Implement the reusable regional-detail and resource-panel structure.
+5. Load YouTube only on demand after a visitor chooses a video; never autoplay.
+6. Implement regional orientation, selected hotspot, direct-link, and browser
+   Back/Forward states.
+7. Validate the complete body-to-region-to-hotspot-to-resource path before
+   extending the system.
 
-### Phase 6 — Content growth and project documentation
+Phase 2B and Phase 3 should be implemented as one coherent batch because the
+Hand & wrist slice is the first real validation of the revised overview
+contract.
+
+### Phase 4A — Knee vertical slice
+
+1. Add approved Knee artwork and separate interaction maps for front, inner,
+   outer, and below-patella areas.
+2. Connect the six Knee resources.
+3. Validate the first high-density multi-view regional experience before
+   extending the same pattern farther down the leg.
+
+### Phase 4B — Lower leg, ankle & foot
+
+1. Add Lower leg views for medial shin, lateral/anterior shin, calf, and
+   Achilles areas.
+2. Add Foot & ankle top and sole views for ankle, heel, plantar fascia, ball of
+   foot, bunion, and turf-toe areas.
+3. Connect the eleven Lower leg, ankle, and foot resources.
+
+Keep Phase 4A and 4B sequential. Combining all seventeen lower-body resources,
+new artwork, multi-view state, and URL behavior in one unverified change would
+make alignment and data errors unnecessarily difficult to isolate.
+
+### Phase 5A — Shoulder, arm & elbow
+
+1. Add approved regional artwork and separate interaction maps.
+2. Preserve front/back and paired left/right behavior where appropriate.
+3. Connect the nine Shoulder, arm & elbow resources.
+
+### Phase 5B — Torso/back and Hip/thigh
+
+1. Add Torso & back regional artwork and connect its eight resources.
+2. Add Hip & thigh regional artwork and connect its seven resources.
+3. Reuse the regional-detail, resource-panel, orientation, and URL-state
+   contracts proven in Phases 3 and 4.
+
+### Phase 6 — Release hardening and inventory completion
+
+1. Confirm that all 45 playlist videos appear once in the data inventory and
+   in at least one reachable explorer location.
+2. Verify mouse, touch, keyboard, direct links, browser Back/Forward, text
+   fallback, reduced motion, and all responsive breakpoints.
+3. Verify that every visual asset remains independent from its SVG hit map and
+   that the final full-body artwork has not been modified.
+4. Verify source labels, unavailable-video behavior, educational-use language,
+   and non-diagnostic content boundaries.
+5. Remove obsolete artwork references and unreachable implementation paths.
+
+### Phase 7 — Content growth and project documentation
 
 1. Add anatomy, exercise, or rehabilitation resources only when source quality
    and authorship can be represented accurately.
@@ -614,11 +781,36 @@ endorsement unless those relationships actually exist.
 3. Consider a Body Explorer build log in Notes.
 4. Reconsider lightweight search only after observing a real navigation need.
 
+### Recommended implementation batches and model settings
+
+These recommendations were reviewed against the official OpenAI model catalog
+and GPT-5.6 guidance on August 31, 2026:
+
+- <https://developers.openai.com/api/docs/models>
+- <https://developers.openai.com/api/docs/guides/latest-model>
+
+| Implementation batch | Model | Reasoning effort | Rationale |
+| --- | --- | --- | --- |
+| Phase 2B + Phase 3 | `gpt-5.6-sol` | `high` | Cross-cutting architecture, detailed UI, URL state, accessibility, and the first end-to-end resource flow |
+| Phase 4A | `gpt-5.6-sol` | `high` | First high-density multi-view regional implementation |
+| Phase 4B | `gpt-5.6-terra` | `high` | Pattern reuse with a larger but well-defined hotspot and resource inventory |
+| Phase 5A + Phase 5B | `gpt-5.6-terra` | `high` | Expansion of contracts already proven by the hand and lower-body slices |
+| Phase 6 | `gpt-5.6-sol` | `xhigh` | Quality-first cross-cutting audit of accessibility, navigation, layout, and data completeness |
+| Phase 7 | `gpt-5.6-terra` | `medium` | Normal content and documentation growth after architecture is stable |
+| Mechanical ID, title, and metadata checks | `gpt-5.6-luna` | `low` or `medium` | Repetitive, bounded validation where cost and throughput matter more than new product judgment |
+
+`max` reasoning is not the default recommendation for this project. Use it only
+if a genuinely difficult integration or release-blocking defect remains after
+`gpt-5.6-sol` at `xhigh`, and compare the result against the lower-effort
+baseline rather than assuming more reasoning is automatically better.
+
 ## Verification Matrix
 
 ### Structure and links
 
 - Open Body Explorer from the Robotics page.
+- Confirm the Robotics preview uses the approved final raster artwork and does
+  not depend on the obsolete character SVGs.
 - Return to Robotics through the breadcrumb and footer.
 - Verify all nested relative URLs from local-file and HTTP previews.
 - Confirm every YouTube ID resolves to the intended title.
@@ -626,7 +818,12 @@ endorsement unless those relationships actually exist.
 
 ### Diagram navigation
 
-- Select every active region from front and back body views.
+- Select every active semantic hotspot from front and back body views and
+  confirm that it maps to the intended broader region.
+- Hover and focus every paired left/right area and confirm that both
+  counterparts highlight without changing the exact selected hotspot.
+- Confirm planned hotspots provide an explicit planned-resource state and do
+  not imply that a missing detail view is available.
 - Enter and exit every regional detail without losing orientation.
 - Select every hotspot and confirm the correct resource set.
 - Use browser Back and Forward across body, regional, and selected-area states.
@@ -637,13 +834,20 @@ endorsement unless those relationships actually exist.
 - Navigate the entire explorer using Tab, Shift+Tab, Enter, and Space where
   appropriate.
 - Confirm focus order follows the visual body and regional hierarchy.
+- Confirm a focused paired hotspot highlights both counterparts and retains a
+  visible focus treatment on the exact keyboard target.
 - Verify the text region directory reaches the same resources.
 - Confirm headings and selected labels update coherently for screen readers.
 
 ### Responsive and visual
 
 - Check wide desktop, tablet, `620px`, `410px`, and `320px` layouts.
-- Confirm hotspots remain aligned with their illustration at every size.
+- Confirm each `<img>` visual layer and SVG hit-map layer occupy the same
+  container and remain aligned at every size.
+- Confirm the full-body artwork is still the original approved
+  `body-default.png` and has not been redrawn, converted, or modified.
+- Confirm the explorer shell aligns with the shared `1120px` site-header width
+  and the full-body plates remain near the documented `220px` maximum.
 - Confirm video content never forces horizontal overflow.
 - Confirm front/back and palm/back controls remain obvious on touch devices.
 - Check the experience with reduced motion enabled.
@@ -661,9 +865,17 @@ endorsement unless those relationships actually exist.
 - **Illustration workload:** the interaction is simple, but coherent front,
   back, palm, sole, and regional artwork is the largest production task. Prove
   one vertical slice before producing the full set.
-- **Hotspot alignment:** illustration and overlay coordinates can drift during
-  asset revisions. Give every asset a stable `viewBox` and test alignment at
-  each breakpoint.
+- **Immutable overview artwork:** the supplied full-body raster is final and
+  cannot be repaired through implementation edits. If a future replacement is
+  supplied, treat it as a new approved asset and recalibrate only the visual
+  crop and interaction overlay.
+- **Hotspot alignment:** the full-body artwork is a composite raster while each
+  orientation uses its own `510 × 1285` SVG interaction space. Crop positions,
+  aspect ratio, and overlay coordinates form one contract and must be tested at
+  every breakpoint.
+- **Paired interaction drift:** IDs encode side and orientation today, but
+  parsing IDs is brittle. Phase 2B must add explicit highlight-group metadata
+  before more regional maps reuse the behavior.
 - **Uneven coverage:** the initial playlist is strongest in the lower body and
   has only two hand/wrist videos. The interface should communicate available
   coverage honestly rather than imply a complete anatomy atlas.
@@ -681,6 +893,10 @@ The first end-to-end MVP is complete when:
 - Body Explorer appears as an in-development Robotics project;
 - the explorer opens as a wide, dedicated nested page;
 - a visitor can select Hand & wrist from a gender-neutral front/back body map;
+- the full-body visual is the unchanged approved raster artwork and its SVG is
+  only a transparent semantic interaction map;
+- paired left/right overview areas highlight together while exact selection is
+  preserved;
 - the visitor can select the thumb-side or central palm-side wrist from a
   detailed hand illustration;
 - the matching De Quervain or Carpal Tunnel resource appears with its source;

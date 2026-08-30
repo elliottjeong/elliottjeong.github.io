@@ -42,16 +42,16 @@
         </div>
       </header>
 
-      <section class="body-map" id="body-map" aria-labelledby="body-map-title">
+      <section class="body-map" id="body-map" aria-labelledby="body-map-title" data-explorer-view="body">
         <div class="body-map__heading">
           <div>
             <p class="section-number">01</p>
             <h2 id="body-map-title">Choose an area to explore</h2>
           </div>
-          <p>Major regions are mapped now. Detailed area views are marked as planned until each study plate is ready.</p>
+          <p>Hand &amp; wrist is ready to explore. Other detailed area views remain clearly marked as planned.</p>
         </div>
 
-        <div class="body-orientation-control" data-body-orientation-controls hidden aria-label="Body orientation">
+        <div class="body-orientation-control" data-orientation-control="body" hidden aria-label="Body orientation">
           <button type="button" data-orientation="front" aria-pressed="true">Front</button>
           <button type="button" data-orientation="back" aria-pressed="false">Back</button>
         </div>
@@ -134,10 +134,71 @@
           </figure>
         </div>
 
-        <p class="body-map__selection" data-body-selection>Hover or focus a body area, then select it to prepare related resources.</p>
-        <p class="body-map__legend"><span aria-hidden="true"></span> Anatomical areas highlight on hover, focus, or selection. Detailed study plates are planned.</p>
-        <p class="visually-hidden" data-body-status aria-live="polite"></p>
+        <div class="body-map__selection-row">
+          <p class="body-map__selection" data-body-selection>Hover or focus a body area, then select it to see its coverage status.</p>
+          <a class="body-map__action" href="#hand-wrist/palm" data-body-action hidden>Explore Hand &amp; wrist</a>
+        </div>
+        <p class="body-map__legend"><span aria-hidden="true"></span> Anatomical areas highlight on hover, focus, or selection. Available regions include an explicit next step.</p>
       </section>
+
+      <section class="body-detail" id="hand-wrist-detail" aria-labelledby="hand-wrist-title" data-explorer-view="hand-wrist" hidden>
+        <div class="body-detail__topline">
+          <div>
+            <nav class="body-detail__breadcrumb" aria-label="Body Explorer detail breadcrumb">
+              <a href="#body/front" data-back-to-body>Body</a>
+              <span aria-hidden="true">/</span>
+              <span>Upper limb</span>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">Hand &amp; wrist</span>
+            </nav>
+            <h2 id="hand-wrist-title">Hand &amp; wrist</h2>
+          </div>
+          <a class="body-detail__back" href="#body/front" data-back-to-body><span aria-hidden="true">←</span> Back to body</a>
+        </div>
+
+        <div class="body-orientation-control body-orientation-control--detail" data-orientation-control="hand-wrist" aria-label="Hand orientation">
+          <button type="button" data-orientation="palm" aria-pressed="true">Palm</button>
+          <button type="button" data-orientation="dorsal" aria-pressed="false">Back of hand</button>
+        </div>
+
+        <div class="body-detail__layout">
+          <div class="body-detail__illustration" aria-label="Interactive hand and wrist study plate">
+            <p class="body-detail__instruction">Choose one of the outlined wrist areas.</p>
+
+            <figure class="hand-view is-current" data-detail-view="palm">
+              <figcaption><span>01</span> Palm</figcaption>
+              <div class="hand-view__plate">
+                <img class="hand-artwork hand-artwork--palm" src="../../../assets/workbench/robotics/body-explorer/hands.png" alt="Palm view of a hand and wrist illustration" width="1448" height="1086">
+                <svg class="body-hit-map hand-hit-map" viewBox="0 0 692 1040" role="group" aria-label="Interactive areas on the palm-side wrist">
+                  <path id="hand-palm-thumb-side-wrist" class="body-hit-area hand-hit-area" data-hotspot-id="hand-palm-thumb-side-wrist" tabindex="0" role="button" aria-label="Thumb-side wrist" transform="translate(24 -26)" d="M357 982 L357 762 C340 730 315 695 285 660 C255 625 220 585 180 548 L100 450 C82 428 58 431 48 450 C39 469 50 493 66 513 L170 642 C210 692 240 740 252 800 L263 979 C289 1008 330 1008 357 982 Z"><title>Thumb-side wrist</title></path>
+                  <path id="hand-palm-central-wrist" class="body-hit-area hand-hit-area" data-hotspot-id="hand-palm-central-wrist" tabindex="0" role="button" aria-label="Central palm-side wrist" d="M355 762 C403 735 468 735 510 770 L522 982 C481 1018 398 1018 357 982 Z"><title>Central palm-side wrist</title></path>
+                </svg>
+              </div>
+            </figure>
+
+            <figure class="hand-view" data-detail-view="dorsal" hidden>
+              <figcaption><span>02</span> Back of hand</figcaption>
+              <div class="hand-view__plate">
+                <img class="hand-artwork hand-artwork--dorsal" src="../../../assets/workbench/robotics/body-explorer/hands.png" alt="Back view of a hand and wrist illustration" width="1448" height="1086">
+                <svg class="body-hit-map hand-hit-map" viewBox="0 0 692 1040" role="group" aria-label="Interactive areas on the back of the wrist">
+                  <path id="hand-dorsal-thumb-side-wrist" class="body-hit-area hand-hit-area" data-hotspot-id="hand-dorsal-thumb-side-wrist" tabindex="0" role="button" aria-label="Thumb-side wrist" transform="translate(-24 -26)" d="M410 982 C390 920 386 844 391 770 C395 710 420 660 460 615 C500 570 548 536 575 498 L620 440 C637 420 660 423 672 440 C684 457 678 477 664 496 L565 630 C530 675 510 725 508 790 L505 979 C478 1005 435 1008 410 982 Z"><title>Thumb-side wrist</title></path>
+                </svg>
+              </div>
+            </figure>
+          </div>
+
+          <aside class="body-resource-panel" aria-labelledby="resource-panel-title">
+            <p class="body-resource-panel__eyebrow">Resources related to this area</p>
+            <h3 id="resource-panel-title" data-resource-heading>Choose a wrist area</h3>
+            <p class="body-resource-panel__description" data-resource-description>Select a highlighted area on the hand illustration to see related learning material.</p>
+            <p class="body-resource-panel__empty" data-resource-empty>No area selected yet.</p>
+            <div class="body-resource-panel__list" data-resource-list hidden></div>
+            <p class="body-resource-panel__notice">For education only. These external resources are not medical advice or a diagnosis, and do not replace evaluation by a qualified professional.</p>
+          </aside>
+        </div>
+      </section>
+
+      <p class="visually-hidden" data-body-status aria-live="polite"></p>
 
       <div class="body-explorer-support">
         <section class="body-region-directory" aria-labelledby="body-region-directory-title">
@@ -145,10 +206,10 @@
             <p class="section-number">02</p>
             <h2 id="body-region-directory-title">Region directory</h2>
           </div>
-          <p class="body-support-copy">Coverage will open region by region as detailed illustrations and resources are completed.</p>
+          <p class="body-support-copy">Hand &amp; wrist is available now. The remaining study plates will open region by region.</p>
           <ul data-region-list>
             <li id="region-shoulder-arm-elbow"><a href="#body-map">Shoulder, arm &amp; elbow</a> <span>Planned</span></li>
-            <li id="region-hand-wrist"><a href="#body-map">Hand &amp; wrist</a> <span>Planned</span></li>
+            <li id="region-hand-wrist"><a href="#hand-wrist/palm">Hand &amp; wrist</a> <span>Explore</span></li>
             <li id="region-torso-back"><a href="#body-map">Torso &amp; back</a> <span>Planned</span></li>
             <li id="region-hip-thigh"><a href="#body-map">Hip &amp; thigh</a> <span>Planned</span></li>
             <li id="region-knee"><a href="#body-map">Knee</a> <span>Planned</span></li>
@@ -169,6 +230,17 @@
           <p class="body-source-note">External resources are published by STRENGTHTAPE. Their inclusion does not imply authorship, clinical review, sponsorship, or endorsement by this portfolio.</p>
         </section>
       </div>
+
+      <noscript>
+        <section class="body-noscript" aria-labelledby="body-noscript-title">
+          <h2 id="body-noscript-title">Hand &amp; wrist resources</h2>
+          <p>The illustrated controls require JavaScript. These source links remain available:</p>
+          <ul>
+            <li><a href="https://www.youtube.com/watch?v=n-m9RT7sdUA">De Quervain — STRENGTHTAPE</a></li>
+            <li><a href="https://www.youtube.com/watch?v=ke7glF7HrVo">Carpal Tunnel — STRENGTHTAPE</a></li>
+          </ul>
+        </section>
+      </noscript>
     </main>
 
     <footer class="page-footer">
