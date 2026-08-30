@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 620" role="img" aria-labelledby="front-title front-description">
+  <title id="front-title">Front anatomical guide character</title>
+  <desc id="front-description">A calm, gender-neutral human figure with a continuous natural silhouette and subtly marked interactive anatomical regions.</desc>
+  <defs>
+    <path id="front-silhouette-shape" d="M128.5 13C112 13 101 24 98.5 42.5c-2 15 2.5 29.5 12.5 39.5 4 4 5 10.5 3.5 20.5-10.5 2-19.5 5-27 9.5-18 10.5-27 26.5-28.5 47.5-1.5 22.5-1 44.5-4.5 68.5-3.5 24.5-5 50.5-5 78.5l-1 30.5c-.5 15 2.5 28 7.5 39.5 3 7 7.5 10.5 12 8 5-2.5 5.5-9.5 3.5-17l-2.5-13.5 5 25c1 4.5 5.5 5 7.5 1 1.5-3.5-.5-17-2.5-30.5-1.5-11-4-21.5-7-31 3.5-17 5.5-35.5 7-54.5 2.5-28.5 5.5-54.5 11-76.5 1.5-6 3-11.5 5-16.5 1 30.5 2.5 58.5 5 84 1.5 16 3.5 30 6 42-6 15-9.5 32-10.5 51.5-1 25 2.5 46.5 6.5 66-4 10-5.5 21.5-3 33.5 1.5 8 4.5 14.5 8 19.5-4 20-5 42-2.5 64.5 1.5 16 4.5 29.5 7 40-4.5 7-11 13.5-20 20.5-7 5.5-5.5 12 3.5 14 10.5 2 23.5 1.5 35-1 6-1.5 8.5-5.5 6.5-11.5-2.5-7.5-4-15.5-5-24 2-15 4-31 5.5-48 1.5-17 1.5-32 0-44.5 1.5-14 2.5-29.5 3-46.5l1.5-43c0-10 1.5-18.5 4-25.5 2.5 7 4 15.5 4 25.5l1.5 43c.5 17 1.5 32.5 3 46.5-1.5 12.5-1.5 27.5 0 44.5 1.5 17 3 33 5.5 48-1 8.5-2.5 16.5-5 24-2 6 1 10 6.5 11.5 11.5 2.5 24.5 3 35 1 9-2 10.5-8.5 3.5-14-9-7-15.5-13.5-20-20.5 2.5-10.5 5.5-24 7-40 2.5-22.5 1.5-44.5-2.5-64.5 3.5-5 6.5-11.5 8-19.5 2.5-12 1-23.5-3-33.5 4-19.5 7.5-41 6.5-66-1-19.5-4.5-36.5-10.5-51.5 2.5-12 4.5-26 6-42 2.5-25.5 4-53.5 5-84 2 5 3.5 10.5 5 16.5 5.5 22 8.5 48 11 76.5 1.5 19 3.5 37.5 7 54.5-3 9.5-5.5 20-7 31-2 13.5-4 27-2.5 30.5 2 4 6.5 3.5 7.5-1l5-25-2.5 13.5c-2 7.5-1.5 14.5 3.5 17 4.5 2.5 9-1 12-8 5-11.5 8-24.5 7.5-39.5l-1-30.5c0-28-1.5-54-5-78.5-3.5-24-3-46-4.5-68.5-1.5-21-10.5-37-28.5-47.5-7.5-4.5-16.5-7.5-27-9.5-1.5-10-.5-16.5 3.5-20.5 10-10 14.5-24.5 12.5-39.5C156 24 145 13 128.5 13Z"/>
+    <path id="front-head-shape" d="M128.5 13C110 13 99 27 99 47c0 17 6 29 15 38 4.5 4.5 9.5 7.5 14.5 9 5-1.5 10-4.5 14.5-9 9-9 15-21 15-38 0-20-11-34-29.5-34Z"/>
+    <path id="front-neck-bridge" d="M114 80c2 8 2 16 .5 23h28c-1.5-7-1.5-15 .5-23-4 7-9 11.5-14.5 14-5.5-2.5-10.5-7-14.5-14Z"/>
+    <path id="front-shoulder-bridge" d="M114.5 102.5c-10.5 2-19.5 5-27 9.5h82c-7.5-4.5-16.5-7.5-27-9.5Z"/>
+    <clipPath id="front-body-cut"><rect x="0" y="112" width="260" height="508"/></clipPath>
+    <clipPath id="front-silhouette-clip"><use href="#front-silhouette-shape"/></clipPath>
+  </defs>
+  <style>
+    .body-surface { fill: #eee8dc; }
+    .body-contour { fill: none; stroke: #2f2a24; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+    .surface-shade { fill: #d9cdbb; opacity: .34; }
+    .surface-light { fill: #faf6ee; opacity: .52; }
+    .anatomy-line { fill: none; stroke: #645c52; stroke-width: .72; stroke-linecap: round; stroke-linejoin: round; opacity: .55; vector-effect: non-scaling-stroke; }
+    .anatomy-line--soft { opacity: .3; }
+    .feature-line { fill: none; stroke: #342f29; stroke-width: 1.15; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+    .feature-fill { fill: #342f29; }
+    .body-region { fill: #c5a66d; fill-opacity: 0; stroke: none; pointer-events: all; transition: fill-opacity 160ms ease; }
+    .body-hotspot { cursor: pointer; outline: none; }
+    .body-hotspot:hover .body-region, .body-hotspot:focus .body-region { fill-opacity: .18; }
+    .body-hotspot.is-selected .body-region { fill: #a87d3e; fill-opacity: .27; }
+    .body-hotspot:focus .focus-trace { opacity: .75; }
+    .focus-trace { fill: none; stroke: #651f28; stroke-width: 1.05; stroke-dasharray: 2.2 3.4; opacity: 0; pointer-events: none; vector-effect: non-scaling-stroke; }
+    @media (prefers-reduced-motion: reduce) { .body-region { transition: none; } }
+  </style>
+  <g id="body-front" data-body-view="front">
+    <g clip-path="url(#front-body-cut)"><use href="#front-silhouette-shape" fill="#eee8dc"/></g>
+    <use href="#front-shoulder-bridge" fill="#eee8dc"/>
+    <use href="#front-neck-bridge" fill="#eee8dc"/>
+    <use href="#front-head-shape" fill="#eee8dc"/>
+    <g class="visible-illustration" clip-path="url(#front-silhouette-clip)" aria-hidden="true">
+      <path class="surface-shade" d="M88 112c-20 14-25 38-24 68 1 44-8 92-9 139 0 22 4 42 12 60l8-1c-5-22-5-42-2-61 7-42 8-88 17-127 4-20 7-35 5-54l12-25Z"/>
+      <path class="surface-shade" d="M169 114c20 14 25 38 24 68-1 44 8 92 9 139 0 22-4 42-12 60l-8-1c5-22 5-42 2-61-7-42-8-88-17-127-4-20-7-35-5-54l12-25Z"/>
+      <path class="surface-light" d="M114 105c-10 16-13 41-11 74 2 31 7 58 5 88-1 20-4 35-8 48 9 6 18 9 28 9V106c-5 2-9 2-14-1Z"/>
+      <path class="surface-shade" d="M90 318c-8 37-7 80 2 126 3 16 2 29-1 40 8 4 17 4 26 0 5-38 7-80 6-126-11-10-22-23-33-40Z"/>
+      <path class="surface-shade" d="M167 318c8 37 7 80-2 126-3 16-2 29 1 40-8 4-17 4-26 0-5-38-7-80-6-126 11-10 22-23 33-40Z"/>
+      <path class="surface-light" d="M101 488c-5 29-5 60 2 92l15 1c0-28 2-59 5-91-7 3-14 2-22-2Z"/>
+      <path class="surface-light" d="M156 488c5 29 5 60-2 92l-15 1c0-28-2-59-5-91 7 3 14 2 22-2Z"/>
+      <path class="anatomy-line" d="M114 104c3 10 8 16 14.5 18 6.5-2 11.5-8 14.5-18"/>
+      <path class="anatomy-line" d="M101 128c8-2 17 1 27.5 7 10.5-6 19.5-9 27.5-7"/>
+      <path class="anatomy-line anatomy-line--soft" d="M128.5 122v160"/>
+      <path class="anatomy-line" d="M102 184c8 5 17 7 26.5 7s18.5-2 26.5-7"/>
+      <path class="anatomy-line" d="M102 267c8 5 17 7 26.5 7s18.5-2 26.5-7"/>
+      <path class="anatomy-line" d="M98 311c8 6 18 9 30.5 10 12.5-1 22.5-4 30.5-10"/>
+      <path class="anatomy-line anatomy-line--soft" d="M112 292c4 4 9.5 6 16.5 6s12.5-2 16.5-6"/>
+      <path class="anatomy-line" d="M89 158c-5 5-8 12-9 21M168 158c5 5 8 12 9 21"/>
+      <path class="anatomy-line" d="M78 236c-6 3-11 3-17 0M179 236c6 3 11 3 17 0"/>
+      <path class="anatomy-line" d="M72 315c-6 3-13 3-20 0M185 315c6 3 13 3 20 0"/>
+      <path class="anatomy-line" d="M93 445c8 4 17 4 26 0M138 445c8 4 17 4 26 0"/>
+      <path class="anatomy-line anatomy-line--soft" d="M94 478c8 5 17 5 26 1M137 479c9 4 18 4 26-1"/>
+      <path class="anatomy-line" d="M100 579c6 3 12 3 18 0M139 579c6 3 12 3 18 0"/>
+      <ellipse class="feature-fill" cx="128.5" cy="246" rx="1.45" ry="1.8" opacity=".55"/>
+      <path class="anatomy-line anatomy-line--soft" d="M117 351c4 4 8 6 11.5 6 3.5 0 7.5-2 11.5-6M57 338c2 10 4 20 5 30M62 335c3 10 5 20 6 30M200 338c-2 10-4 20-5 30M195 335c-3 10-5 20-6 30M80 600c11 3 23 3 35 0M142 600c12 3 24 3 35 0"/>
+    </g>
+    <g class="character-details" aria-hidden="true">
+      <path class="feature-line" d="M105 42c4-17 13-25 25-25 10 0 19 6 24 20-7-7-16-10-26-9-9 1-17 5-23 14" opacity=".75"/>
+      <path class="feature-line" d="M112.5 49c3.5-2 7-2 10.5-.3M135 48.7c3.5-1.7 7-1.7 10.5.3M114.5 55.5c2.5-1.2 5.3-1.2 7.8 0M134.7 55.5c2.5-1.2 5.3-1.2 7.8 0"/>
+      <circle class="feature-fill" cx="118.4" cy="55.6" r="1.05"/><circle class="feature-fill" cx="138.6" cy="55.6" r="1.05"/>
+      <path class="feature-line" d="M128.5 56.5c-.7 3.6-1 6.3-.4 8.2 1.2 1 2.6 1.2 4.1.5M119 69.5c5.5 3.4 12 3.7 19 .3"/>
+      <path class="feature-line" d="M101 58c2 1.5 3.7 2 5.2 1.6M156 58c-2 1.5-3.7 2-5.2 1.6" opacity=".58"/>
+    </g>
+    <g class="interaction-layer" clip-path="url(#front-silhouette-clip)">
+      <g id="front-shoulder-arm-elbow" class="body-hotspot" data-hotspot-id="front-shoulder-arm-elbow" role="button" tabindex="0" aria-label="Shoulders, arms, and elbows">
+        <path id="front-shoulder-left" class="body-region" data-anatomy-region="shoulder-left" d="M82 106h47v62H81Z"/><path id="front-shoulder-right" class="body-region" data-anatomy-region="shoulder-right" d="M128 106h48v62h-48Z"/>
+        <path id="front-upper-arm-left" class="body-region" data-anatomy-region="upper-arm-left" d="M55 145h38v94H55Z"/><path id="front-upper-arm-right" class="body-region" data-anatomy-region="upper-arm-right" d="M164 145h38v94h-38Z"/>
+        <path id="front-forearm-left" class="body-region" data-anatomy-region="forearm-left" d="M48 233h34v86H48Z"/><path id="front-forearm-right" class="body-region" data-anatomy-region="forearm-right" d="M175 233h34v86h-34Z"/>
+        <path class="focus-trace" d="M89 158c-5 5-8 12-9 21M78 236c-6 3-11 3-17 0M168 158c5 5 8 12 9 21M179 236c6 3 11 3 17 0"/>
+      </g>
+      <g id="front-hand-wrist" class="body-hotspot" data-hotspot-id="front-hand-wrist" role="button" tabindex="0" aria-label="Hands and wrists">
+        <path id="front-hand-left" class="body-region" data-anatomy-region="hand-left" d="M43 307h42v84H43Z"/><path id="front-hand-right" class="body-region" data-anatomy-region="hand-right" d="M172 307h42v84h-42Z"/><path class="focus-trace" d="M72 315c-6 3-13 3-20 0M185 315c6 3 13 3 20 0"/>
+      </g>
+      <g id="front-torso-back" class="body-hotspot" data-hotspot-id="front-torso-back" role="button" tabindex="0" aria-label="Chest, abdomen, and waist">
+        <path id="front-chest-left" class="body-region" data-anatomy-region="chest-left" d="M91 113h38v79H91Z"/><path id="front-chest-right" class="body-region" data-anatomy-region="chest-right" d="M128 113h38v79h-38Z"/>
+        <path id="front-abdomen-left" class="body-region" data-anatomy-region="abdomen-left" d="M96 191h33v78H96Z"/><path id="front-abdomen-right" class="body-region" data-anatomy-region="abdomen-right" d="M128 191h33v78h-33Z"/><path id="front-abdomen" class="body-region" data-anatomy-region="abdomen" d="M112 184h33v111h-33Z"/>
+        <path id="front-waist-left" class="body-region" data-anatomy-region="waist-left" d="M94 267h35v54H94Z"/><path id="front-waist-right" class="body-region" data-anatomy-region="waist-right" d="M128 267h35v54h-35Z"/><path class="focus-trace" d="M102 184c8 5 17 7 26.5 7s18.5-2 26.5-7M102 267c8 5 17 7 26.5 7s18.5-2 26.5-7"/>
+      </g>
+      <g id="front-hip-thigh" class="body-hotspot" data-hotspot-id="front-hip-thigh" role="button" tabindex="0" aria-label="Pelvis, hips, and thighs">
+        <path id="front-pelvis-left" class="body-region" data-anatomy-region="pelvis-left" d="M88 305h41v55H88Z"/><path id="front-pelvis-right" class="body-region" data-anatomy-region="pelvis-right" d="M128 305h41v55h-41Z"/><path id="front-thigh-left" class="body-region" data-anatomy-region="thigh-left" d="M82 350h47v98H82Z"/><path id="front-thigh-right" class="body-region" data-anatomy-region="thigh-right" d="M128 350h47v98h-47Z"/><path class="focus-trace" d="M98 311c8 6 18 9 30.5 10 12.5-1 22.5-4 30.5-10"/>
+      </g>
+      <g id="front-knee" class="body-hotspot" data-hotspot-id="front-knee" role="button" tabindex="0" aria-label="Knees">
+        <path id="front-knee-left" class="body-region" data-anatomy-region="knee-left" d="M87 438h39v48H87Z"/><path id="front-knee-right" class="body-region" data-anatomy-region="knee-right" d="M131 438h39v48h-39Z"/><path class="focus-trace" d="M93 445c8 4 17 4 26 0M138 445c8 4 17 4 26 0"/>
+      </g>
+      <g id="front-lower-leg-ankle-foot" class="body-hotspot" data-hotspot-id="front-lower-leg-ankle-foot" role="button" tabindex="0" aria-label="Lower legs, ankles, and feet">
+        <path id="front-lower-leg-left" class="body-region" data-anatomy-region="lower-leg-left" d="M86 480h42v105H86Z"/><path id="front-lower-leg-right" class="body-region" data-anatomy-region="lower-leg-right" d="M129 480h42v105h-42Z"/><path id="front-foot-left" class="body-region" data-anatomy-region="foot-left" d="M70 575h59v40H70Z"/><path id="front-foot-right" class="body-region" data-anatomy-region="foot-right" d="M128 575h59v40h-59Z"/><path class="focus-trace" d="M100 579c6 3 12 3 18 0M139 579c6 3 12 3 18 0"/>
+      </g>
+    </g>
+    <g clip-path="url(#front-body-cut)" aria-hidden="true"><use href="#front-silhouette-shape" class="body-contour"/></g>
+    <path class="body-contour" d="M128.5 13C110 13 99 27 99 47c0 17 6 29 15 38 2 5 2 11.5.5 18-10.5 2-19.5 5-27 9.5M169.5 112.5c-7.5-4.5-16.5-7.5-27-9.5-1.5-6.5-1.5-13 .5-18 9-9 15-21 15-38 0-20-11-34-29.5-34" aria-hidden="true"/>
+  </g>
+</svg>

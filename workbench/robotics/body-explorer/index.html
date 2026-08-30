@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore educational body-area resources through a front and back illustrated body map.">
+    <title>Body Explorer — Robotics — Eunah Jeong</title>
+    <link rel="stylesheet" href="../../../styles.css">
+  </head>
+  <body class="inner-page body-explorer-page">
+    <a class="skip-link" href="#main-content">Skip to Body Explorer</a>
+    <header class="site-header">
+      <a class="site-name" href="../../../index.html" aria-label="Eunah Jeong, home">Eunah Jeong</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../../profile.html">Profile</a>
+        <a href="../../../workbench.html" aria-current="page">Workbench</a>
+        <a href="../../../path.html">Path</a>
+        <a href="../../../blog/index.html">Notes</a>
+      </nav>
+    </header>
+
+    <main class="body-explorer-shell" id="main-content" data-body-explorer>
+      <nav class="skill-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../../workbench.html">Workbench</a>
+        <span aria-hidden="true">/</span>
+        <a href="../index.html">Robotics</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Body Explorer</span>
+      </nav>
+
+      <header class="body-explorer-intro">
+        <div class="body-explorer-intro__title">
+          <p class="eyebrow">Interactive study atlas · In development</p>
+          <h1>Body Explorer</h1>
+        </div>
+        <div class="body-explorer-intro__copy">
+          <p class="page-lede">Choose a body area to find educational resources connected to that region.</p>
+          <p class="body-education-notice">
+            For education only. This explorer is not medical advice or a diagnostic tool, and it does not replace evaluation by a qualified professional.
+          </p>
+        </div>
+      </header>
+
+      <section class="body-map" id="body-map" aria-labelledby="body-map-title">
+        <div class="body-map__heading">
+          <div>
+            <p class="section-number">01</p>
+            <h2 id="body-map-title">Choose an area to explore</h2>
+          </div>
+          <p>Major regions are mapped now. Detailed area views are marked as planned until each study plate is ready.</p>
+        </div>
+
+        <div class="body-orientation-control" data-body-orientation-controls hidden aria-label="Body orientation">
+          <button type="button" data-orientation="front" aria-pressed="true">Front</button>
+          <button type="button" data-orientation="back" aria-pressed="false">Back</button>
+        </div>
+
+        <div class="body-map__figures">
+          <figure class="body-view is-current" id="body-map-front" data-body-view="front">
+            <figcaption><span>01</span> Front</figcaption>
+            <div class="body-view__plate">
+              <object class="body-illustration" data-body-svg data="../../../assets/workbench/robotics/body-explorer/body-explorer-body-front.svg" type="image/svg+xml" width="260" height="620" aria-label="Front view of a gender-neutral anatomical body map"></object>
+            </div>
+          </figure>
+
+          <figure class="body-view" id="body-map-back" data-body-view="back">
+            <figcaption><span>02</span> Back</figcaption>
+            <div class="body-view__plate">
+              <object class="body-illustration" data-body-svg data="../../../assets/workbench/robotics/body-explorer/body-explorer-body-back.svg" type="image/svg+xml" width="260" height="620" aria-label="Back view of a gender-neutral anatomical body map"></object>
+            </div>
+          </figure>
+        </div>
+
+        <p class="body-map__legend"><span aria-hidden="true"></span> Anatomical areas highlight on hover, focus, or selection. Detailed study plates are planned.</p>
+        <p class="visually-hidden" data-body-status aria-live="polite"></p>
+      </section>
+
+      <div class="body-explorer-support">
+        <section class="body-region-directory" aria-labelledby="body-region-directory-title">
+          <div class="body-support-heading">
+            <p class="section-number">02</p>
+            <h2 id="body-region-directory-title">Region directory</h2>
+          </div>
+          <p class="body-support-copy">Coverage will open region by region as detailed illustrations and resources are completed.</p>
+          <ul data-region-list>
+            <li id="region-shoulder-arm-elbow"><a href="#body-map">Shoulder, arm &amp; elbow</a> <span>Planned</span></li>
+            <li id="region-hand-wrist"><a href="#body-map">Hand &amp; wrist</a> <span>Planned</span></li>
+            <li id="region-torso-back"><a href="#body-map">Torso &amp; back</a> <span>Planned</span></li>
+            <li id="region-hip-thigh"><a href="#body-map">Hip &amp; thigh</a> <span>Planned</span></li>
+            <li id="region-knee"><a href="#body-map">Knee</a> <span>Planned</span></li>
+            <li id="region-lower-leg-ankle-foot"><a href="#body-map">Lower leg, ankle &amp; foot</a> <span>Planned</span></li>
+          </ul>
+        </section>
+
+        <section class="body-basics" aria-labelledby="body-basics-title">
+          <div class="body-support-heading">
+            <p class="section-number">03</p>
+            <h2 id="body-basics-title">Taping basics</h2>
+          </div>
+          <p class="body-support-copy">General techniques that apply before or after using a region-specific resource.</p>
+          <ul data-basic-resources>
+            <li><a href="https://www.youtube.com/watch?v=BaZJU3gJsrk" target="_blank" rel="noopener noreferrer">How to Create a Base</a> <span>STRENGTHTAPE · Taping technique</span></li>
+            <li><a href="https://www.youtube.com/watch?v=pKGZ6QjYxiI" target="_blank" rel="noopener noreferrer">How To Remove</a> <span>STRENGTHTAPE · Taping technique</span></li>
+          </ul>
+          <p class="body-source-note">External resources are published by STRENGTHTAPE. Their inclusion does not imply authorship, clinical review, sponsorship, or endorsement by this portfolio.</p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../index.html"><span aria-hidden="true">←</span> Return to Robotics</a>
+      <a href="../../../index.html">Back to home</a>
+    </footer>
+
+    <script src="body-explorer-data.js"></script>
+    <script src="body-explorer.js"></script>
+  </body>
+</html>
