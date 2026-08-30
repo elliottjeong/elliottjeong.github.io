@@ -4673,39 +4673,43 @@ kbd {
 }
 
 .body-explorer-shell {
-  width: min(calc(100% - 48px), 1400px);
+  width: min(calc(100% - 48px), var(--page-width));
   margin: 0 auto;
-  padding: 48px 0 108px;
+  padding: 30px 0 82px;
 }
 
 .body-explorer-shell .skill-breadcrumb {
-  margin-bottom: 52px;
+  margin-bottom: 28px;
 }
 
 .body-explorer-intro {
-  padding-bottom: 62px;
+  padding-bottom: 34px;
   display: grid;
   grid-template-columns: minmax(300px, 0.8fr) minmax(360px, 1fr);
-  align-items: end;
+  align-items: start;
   gap: clamp(44px, 7vw, 104px);
 }
 
 .body-explorer-intro h1 {
-  margin-top: 14px;
-  font-size: clamp(3.35rem, 6vw, 5.7rem);
+  margin-top: 9px;
+  font-size: clamp(2.6rem, 4.5vw, 4.5rem);
   font-weight: 400;
   letter-spacing: -0.035em;
-  line-height: 0.95;
+  line-height: 1.06;
 }
 
 .body-explorer-intro .page-lede {
   margin-top: 0;
 }
 
+.body-explorer-intro__copy {
+  padding-top: 24px;
+}
+
 .body-education-notice {
   max-width: 700px;
-  margin-top: 23px;
-  padding: 14px 0 14px 18px;
+  margin-top: 16px;
+  padding: 9px 0 9px 16px;
   border-left: 2px solid var(--brass);
   color: var(--ink-soft);
   font-family: var(--sans);
@@ -4714,7 +4718,7 @@ kbd {
 }
 
 .body-map {
-  padding: clamp(24px, 3vw, 42px);
+  padding: clamp(20px, 2.2vw, 30px);
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
   background:
@@ -4723,7 +4727,7 @@ kbd {
 }
 
 .body-map__heading {
-  padding-bottom: 24px;
+  padding-bottom: 16px;
   display: grid;
   grid-template-columns: minmax(300px, 0.9fr) minmax(280px, 1fr);
   align-items: end;
@@ -4749,7 +4753,7 @@ kbd {
   max-width: 570px;
   color: var(--ink-soft);
   font-size: 0.96rem;
-  line-height: 1.65;
+  line-height: 1.5;
 }
 
 .body-orientation-control {
@@ -4784,11 +4788,11 @@ kbd {
 }
 
 .body-map__figures {
-  max-width: 920px;
-  margin: 34px auto 25px;
+  max-width: 700px;
+  margin: 18px auto 12px;
   display: grid;
   grid-template-columns: repeat(2, minmax(220px, 1fr));
-  gap: clamp(36px, 8vw, 112px);
+  gap: clamp(28px, 6vw, 76px);
 }
 
 .body-view {
@@ -4800,8 +4804,8 @@ kbd {
 }
 
 .body-view figcaption {
-  margin-bottom: 18px;
-  padding-bottom: 9px;
+  margin-bottom: 9px;
+  padding-bottom: 7px;
   border-bottom: 1px solid var(--rule);
   color: var(--ink-soft);
   font-family: var(--sans);
@@ -4819,24 +4823,76 @@ kbd {
 
 .body-view__plate {
   position: relative;
-  width: min(100%, 260px);
+  width: min(100%, 220px);
   margin: 0 auto;
+  aspect-ratio: 510 / 1285;
+  overflow: hidden;
 }
 
-.body-view__plate > img,
-.body-illustration {
+.body-artwork {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 240%;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.body-artwork--front {
+  left: -20.588235%;
+}
+
+.body-artwork--back {
+  left: -119.607843%;
+}
+
+.body-hit-map {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  overflow: visible;
 }
 
-.body-illustration {
-  aspect-ratio: 260 / 620;
-  border: 0;
+.body-hit-area {
+  fill: rgba(125, 44, 55, 0.001);
+  stroke: transparent;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  transition: fill 140ms ease, stroke 140ms ease;
+}
+
+.body-hit-area:hover,
+.body-hit-area:focus-visible,
+.body-hit-area.is-pair-highlighted {
+  fill: rgba(125, 44, 55, 0.13);
+  stroke: rgba(125, 44, 55, 0.5);
+  outline: none;
+}
+
+.body-hit-area.is-selected {
+  fill: rgba(125, 44, 55, 0.2);
+  stroke: rgba(125, 44, 55, 0.78);
+}
+
+.body-map__selection {
+  min-height: 1.5em;
+  max-width: 860px;
+  margin: 0 auto 9px;
+  color: var(--burgundy);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .body-map__legend {
-  max-width: 920px;
+  max-width: 860px;
   margin: 0 auto;
   padding-top: 16px;
   border-top: 1px solid var(--rule);
@@ -4852,14 +4908,14 @@ kbd {
   height: 11px;
   margin-right: 7px;
   display: inline-block;
-  border: 1px solid rgba(41, 37, 31, 0.72);
+  border: 1px solid rgba(125, 44, 55, 0.5);
   border-radius: 6px 6px 4px 4px;
-  background: #eee8dd;
+  background: rgba(125, 44, 55, 0.13);
   vertical-align: -1px;
 }
 
 .body-explorer-support {
-  padding-top: 64px;
+  padding-top: 46px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(42px, 7vw, 100px);
@@ -4988,11 +5044,12 @@ kbd {
   .body-explorer-intro {
     grid-template-columns: 1fr;
     align-items: start;
-    gap: 28px;
+    gap: 20px;
   }
 
   .body-explorer-intro__copy {
     max-width: 720px;
+    padding-top: 0;
   }
 
   .body-map__heading {
@@ -5013,12 +5070,12 @@ kbd {
   }
 
   .body-map__figures {
-    max-width: 390px;
+    max-width: 360px;
     grid-template-columns: 1fr;
   }
 
   .body-view__plate {
-    width: min(100%, 250px);
+    width: min(100%, 220px);
   }
 
   .body-explorer-support {
@@ -5029,16 +5086,16 @@ kbd {
 
 @media (max-width: 620px) {
   .body-explorer-shell {
-    width: min(calc(100% - 32px), 1400px);
-    padding: 38px 0 80px;
+    width: min(calc(100% - 32px), var(--page-width));
+    padding: 28px 0 70px;
   }
 
   .body-explorer-shell .skill-breadcrumb {
-    margin-bottom: 40px;
+    margin-bottom: 26px;
   }
 
   .body-explorer-intro {
-    padding-bottom: 48px;
+    padding-bottom: 32px;
   }
 
   .body-explorer-intro h1 {
@@ -5050,7 +5107,7 @@ kbd {
   }
 
   .body-map {
-    padding: 21px 14px 24px;
+    padding: 18px 14px 22px;
   }
 
   .body-map__heading > div {
@@ -5067,17 +5124,17 @@ kbd {
   }
 
   .body-map__figures {
-    margin-top: 26px;
+    margin-top: 17px;
   }
 
   .body-explorer-support {
-    padding-top: 52px;
+    padding-top: 42px;
   }
 }
 
 @media (max-width: 410px) {
   .body-explorer-shell {
-    width: calc(100% - 24px);
+    width: min(calc(100% - 32px), var(--page-width));
   }
 
   .body-explorer-project-preview {
@@ -5119,7 +5176,7 @@ kbd {
   }
 
   .body-view__plate {
-    width: min(100%, 225px);
+    width: min(100%, 210px);
   }
 
   .body-region-directory li {
@@ -5132,7 +5189,8 @@ kbd {
 
 @media (prefers-reduced-motion: reduce) {
   .body-explorer-project-preview,
-  .body-explorer-project-preview__copy strong span {
+  .body-explorer-project-preview__copy strong span,
+  .body-hit-area {
     transition: none;
   }
 

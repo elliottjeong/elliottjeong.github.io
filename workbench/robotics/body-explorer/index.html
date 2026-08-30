@@ -60,18 +60,81 @@
           <figure class="body-view is-current" id="body-map-front" data-body-view="front">
             <figcaption><span>01</span> Front</figcaption>
             <div class="body-view__plate">
-              <object class="body-illustration" data-body-svg data="../../../assets/workbench/robotics/body-explorer/body-explorer-body-front.svg" type="image/svg+xml" width="260" height="620" aria-label="Front view of a gender-neutral anatomical body map"></object>
+              <img class="body-artwork body-artwork--front" src="../../../assets/workbench/robotics/body-explorer/body-default.png" alt="Front view of a gender-neutral humanoid character" width="1224" height="1285">
+              <svg class="body-hit-map" viewBox="0 0 510 1285" role="group" aria-label="Interactive areas on the front of the body">
+                <path id="front-head" class="body-hit-area" data-hotspot-id="front-head" tabindex="0" role="button" aria-label="Front head" d="M207 18 C223 4 286 4 304 21 C321 40 319 112 304 139 C293 158 271 174 255 176 C237 173 216 156 205 137 C190 111 190 40 207 18 Z"><title>Head</title></path>
+                <path id="front-neck" class="body-hit-area" data-hotspot-id="front-neck" tabindex="0" role="button" aria-label="Front neck" d="M226 149 C237 165 275 165 287 149 L294 207 C280 222 233 222 218 207 Z"><title>Neck</title></path>
+                <path id="front-chest" class="body-hit-area" data-hotspot-id="front-chest" tabindex="0" role="button" aria-label="Front chest" d="M161 218 C190 202 219 198 255 213 C291 198 321 202 350 218 L332 336 C306 326 281 327 255 340 C229 327 203 326 179 337 Z"><title>Chest</title></path>
+                <path id="front-abdomen" class="body-hit-area" data-hotspot-id="front-abdomen" tabindex="0" role="button" aria-label="Front abdomen" d="M179 337 C201 327 229 327 255 340 C281 327 310 327 332 337 L337 470 C321 505 293 528 255 530 C217 528 189 505 173 470 Z"><title>Abdomen</title></path>
+                <path id="front-pelvis" class="body-hit-area" data-hotspot-id="front-pelvis" tabindex="0" role="button" aria-label="Front hip and pelvis" d="M173 470 C194 511 218 527 255 530 C292 527 317 511 337 470 L347 570 C325 600 294 626 255 634 C216 626 185 600 163 570 Z"><title>Hip and pelvis</title></path>
+
+                <path id="front-right-shoulder" class="body-hit-area" data-hotspot-id="front-right-shoulder" tabindex="0" role="button" aria-label="Front right shoulder" d="M159 207 C181 198 198 197 219 204 L180 274 L129 315 L105 280 C111 244 128 220 159 207 Z"><title>Right shoulder</title></path>
+                <path id="front-left-shoulder" class="body-hit-area" data-hotspot-id="front-left-shoulder" tabindex="0" role="button" aria-label="Front left shoulder" d="M291 204 C312 197 329 198 351 207 C382 220 399 244 405 280 L381 315 L330 274 Z"><title>Left shoulder</title></path>
+                <path id="front-right-upper-arm" class="body-hit-area" data-hotspot-id="front-right-upper-arm" tabindex="0" role="button" aria-label="Front right upper arm" d="M105 280 L129 315 L118 417 C108 435 91 439 76 427 L70 385 L83 315 Z"><title>Right upper arm</title></path>
+                <path id="front-left-upper-arm" class="body-hit-area" data-hotspot-id="front-left-upper-arm" tabindex="0" role="button" aria-label="Front left upper arm" d="M405 280 L381 315 L392 417 C402 435 419 439 434 427 L440 385 L427 315 Z"><title>Left upper arm</title></path>
+                <path id="front-right-elbow" class="body-hit-area" data-hotspot-id="front-right-elbow" tabindex="0" role="button" aria-label="Front right elbow" d="M76 411 C88 399 108 399 121 413 L126 449 C117 471 89 472 72 454 Z"><title>Right elbow</title></path>
+                <path id="front-left-elbow" class="body-hit-area" data-hotspot-id="front-left-elbow" tabindex="0" role="button" aria-label="Front left elbow" d="M434 411 C422 399 402 399 389 413 L384 449 C393 471 421 472 438 454 Z"><title>Left elbow</title></path>
+                <path id="front-right-forearm" class="body-hit-area" data-hotspot-id="front-right-forearm" tabindex="0" role="button" aria-label="Front right forearm" d="M72 451 C88 469 111 469 124 448 L112 535 L86 603 L54 596 L61 518 Z"><title>Right forearm</title></path>
+                <path id="front-left-forearm" class="body-hit-area" data-hotspot-id="front-left-forearm" tabindex="0" role="button" aria-label="Front left forearm" d="M438 451 C422 469 399 469 386 448 L398 535 L424 603 L456 596 L449 518 Z"><title>Left forearm</title></path>
+                <path id="front-right-wrist" class="body-hit-area" data-hotspot-id="front-right-wrist" tabindex="0" role="button" aria-label="Front right wrist" d="M53 584 L87 590 L85 622 L48 617 Z"><title>Right wrist</title></path>
+                <path id="front-left-wrist" class="body-hit-area" data-hotspot-id="front-left-wrist" tabindex="0" role="button" aria-label="Front left wrist" d="M457 584 L423 590 L425 622 L462 617 Z"><title>Left wrist</title></path>
+                <path id="front-right-hand" class="body-hit-area" data-hotspot-id="front-right-hand" tabindex="0" role="button" aria-label="Front right hand" d="M48 613 L84 620 L91 662 L75 715 C63 734 43 718 37 699 L24 664 C19 650 29 637 43 644 Z"><title>Right hand</title></path>
+                <path id="front-left-hand" class="body-hit-area" data-hotspot-id="front-left-hand" tabindex="0" role="button" aria-label="Front left hand" d="M462 613 L426 620 L419 662 L435 715 C447 734 467 718 473 699 L486 664 C491 650 481 637 467 644 Z"><title>Left hand</title></path>
+
+                <path id="front-right-thigh" class="body-hit-area" data-hotspot-id="front-right-thigh" tabindex="0" role="button" aria-label="Front right thigh" d="M163 563 C181 596 210 622 248 634 L232 806 C219 831 189 837 161 817 L138 686 Z"><title>Right thigh</title></path>
+                <path id="front-left-thigh" class="body-hit-area" data-hotspot-id="front-left-thigh" tabindex="0" role="button" aria-label="Front left thigh" d="M347 563 C329 596 300 622 262 634 L278 806 C291 831 321 837 349 817 L372 686 Z"><title>Left thigh</title></path>
+                <path id="front-right-knee" class="body-hit-area" data-hotspot-id="front-right-knee" tabindex="0" role="button" aria-label="Front right knee" d="M158 809 C178 796 216 800 233 819 L227 884 C209 903 174 902 154 883 Z"><title>Right knee</title></path>
+                <path id="front-left-knee" class="body-hit-area" data-hotspot-id="front-left-knee" tabindex="0" role="button" aria-label="Front left knee" d="M352 809 C332 796 294 800 277 819 L283 884 C301 903 336 902 356 883 Z"><title>Left knee</title></path>
+                <path id="front-right-calf" class="body-hit-area" data-hotspot-id="front-right-calf" tabindex="0" role="button" aria-label="Front right calf" d="M155 884 C174 901 207 906 226 885 L217 982 L201 1118 L157 1118 L142 1008 Z"><title>Right calf</title></path>
+                <path id="front-left-calf" class="body-hit-area" data-hotspot-id="front-left-calf" tabindex="0" role="button" aria-label="Front left calf" d="M355 884 C336 901 303 906 284 885 L293 982 L309 1118 L353 1118 L368 1008 Z"><title>Left calf</title></path>
+                <path id="front-right-ankle" class="body-hit-area" data-hotspot-id="front-right-ankle" tabindex="0" role="button" aria-label="Front right ankle" d="M157 1105 L202 1105 L203 1168 L150 1168 Z"><title>Right ankle</title></path>
+                <path id="front-left-ankle" class="body-hit-area" data-hotspot-id="front-left-ankle" tabindex="0" role="button" aria-label="Front left ankle" d="M353 1105 L308 1105 L307 1168 L360 1168 Z"><title>Left ankle</title></path>
+                <path id="front-right-foot" class="body-hit-area" data-hotspot-id="front-right-foot" tabindex="0" role="button" aria-label="Front right foot" d="M150 1155 L204 1158 L219 1224 C209 1253 144 1263 112 1240 L127 1201 Z"><title>Right foot</title></path>
+                <path id="front-left-foot" class="body-hit-area" data-hotspot-id="front-left-foot" tabindex="0" role="button" aria-label="Front left foot" d="M360 1155 L306 1158 L291 1224 C301 1253 366 1263 398 1240 L383 1201 Z"><title>Left foot</title></path>
+              </svg>
             </div>
           </figure>
 
           <figure class="body-view" id="body-map-back" data-body-view="back">
             <figcaption><span>02</span> Back</figcaption>
             <div class="body-view__plate">
-              <object class="body-illustration" data-body-svg data="../../../assets/workbench/robotics/body-explorer/body-explorer-body-back.svg" type="image/svg+xml" width="260" height="620" aria-label="Back view of a gender-neutral anatomical body map"></object>
+              <img class="body-artwork body-artwork--back" src="../../../assets/workbench/robotics/body-explorer/body-default.png" alt="Back view of a gender-neutral humanoid character" width="1224" height="1285">
+              <svg class="body-hit-map" viewBox="0 0 510 1285" role="group" aria-label="Interactive areas on the back of the body">
+                <path id="back-head" class="body-hit-area" data-hotspot-id="back-head" tabindex="0" role="button" aria-label="Back head" d="M202 18 C220 3 284 3 302 20 C319 39 318 112 303 139 C292 157 271 171 253 174 C236 171 214 157 203 138 C188 111 187 39 202 18 Z"><title>Head</title></path>
+                <path id="back-neck" class="body-hit-area" data-hotspot-id="back-neck" tabindex="0" role="button" aria-label="Back neck" d="M224 145 C237 159 270 159 284 145 L294 210 C279 226 230 226 214 210 Z"><title>Neck</title></path>
+                <path id="back-upper-back" class="body-hit-area" data-hotspot-id="back-upper-back" tabindex="0" role="button" aria-label="Upper back" d="M157 215 C187 199 219 199 254 212 C289 199 322 199 352 215 L330 351 C306 334 282 330 254 340 C226 330 202 334 178 351 Z"><title>Upper back</title></path>
+                <path id="back-lower-back" class="body-hit-area" data-hotspot-id="back-lower-back" tabindex="0" role="button" aria-label="Lower back" d="M178 350 C202 334 228 332 254 340 C280 332 306 334 330 350 L337 516 L254 560 L171 516 Z"><title>Lower back</title></path>
+                <path id="back-pelvis" class="body-hit-area" data-hotspot-id="back-pelvis" tabindex="0" role="button" aria-label="Back hip and pelvis" d="M171 516 L254 560 L337 516 L350 607 C326 641 289 655 254 644 C219 655 182 641 158 607 Z"><title>Hip and pelvis</title></path>
+
+                <path id="back-left-shoulder" class="body-hit-area" data-hotspot-id="back-left-shoulder" tabindex="0" role="button" aria-label="Back left shoulder" d="M157 207 C179 198 198 197 219 204 L179 276 L127 315 L102 281 C110 245 127 220 157 207 Z"><title>Left shoulder</title></path>
+                <path id="back-right-shoulder" class="body-hit-area" data-hotspot-id="back-right-shoulder" tabindex="0" role="button" aria-label="Back right shoulder" d="M289 204 C310 197 329 198 351 207 C381 220 398 245 406 281 L381 315 L329 276 Z"><title>Right shoulder</title></path>
+                <path id="back-left-upper-arm" class="body-hit-area" data-hotspot-id="back-left-upper-arm" tabindex="0" role="button" aria-label="Back left upper arm" d="M102 281 L127 315 L116 416 C107 434 89 440 74 427 L68 385 L81 315 Z"><title>Left upper arm</title></path>
+                <path id="back-right-upper-arm" class="body-hit-area" data-hotspot-id="back-right-upper-arm" tabindex="0" role="button" aria-label="Back right upper arm" d="M406 281 L381 315 L392 416 C401 434 419 440 434 427 L440 385 L427 315 Z"><title>Right upper arm</title></path>
+                <path id="back-left-elbow" class="body-hit-area" data-hotspot-id="back-left-elbow" tabindex="0" role="button" aria-label="Back left elbow" d="M74 410 C87 399 107 399 120 413 L125 449 C116 471 88 472 71 454 Z"><title>Left elbow</title></path>
+                <path id="back-right-elbow" class="body-hit-area" data-hotspot-id="back-right-elbow" tabindex="0" role="button" aria-label="Back right elbow" d="M434 410 C421 399 401 399 388 413 L383 449 C392 471 420 472 437 454 Z"><title>Right elbow</title></path>
+                <path id="back-left-forearm" class="body-hit-area" data-hotspot-id="back-left-forearm" tabindex="0" role="button" aria-label="Back left forearm" d="M71 451 C87 469 110 469 123 448 L111 535 L85 604 L53 597 L60 518 Z"><title>Left forearm</title></path>
+                <path id="back-right-forearm" class="body-hit-area" data-hotspot-id="back-right-forearm" tabindex="0" role="button" aria-label="Back right forearm" d="M437 451 C421 469 398 469 385 448 L397 535 L423 604 L455 597 L448 518 Z"><title>Right forearm</title></path>
+                <path id="back-left-wrist" class="body-hit-area" data-hotspot-id="back-left-wrist" tabindex="0" role="button" aria-label="Back left wrist" d="M52 585 L86 591 L84 623 L47 618 Z"><title>Left wrist</title></path>
+                <path id="back-right-wrist" class="body-hit-area" data-hotspot-id="back-right-wrist" tabindex="0" role="button" aria-label="Back right wrist" d="M456 585 L422 591 L424 623 L461 618 Z"><title>Right wrist</title></path>
+                <path id="back-left-hand" class="body-hit-area" data-hotspot-id="back-left-hand" tabindex="0" role="button" aria-label="Back left hand" d="M47 614 L83 621 L90 663 L74 716 C62 735 42 719 36 700 L23 665 C18 651 28 638 42 645 Z"><title>Left hand</title></path>
+                <path id="back-right-hand" class="body-hit-area" data-hotspot-id="back-right-hand" tabindex="0" role="button" aria-label="Back right hand" d="M461 614 L425 621 L418 663 L434 716 C446 735 466 719 472 700 L485 665 C490 651 480 638 466 645 Z"><title>Right hand</title></path>
+
+                <path id="back-left-thigh" class="body-hit-area" data-hotspot-id="back-left-thigh" tabindex="0" role="button" aria-label="Back left thigh" d="M158 598 C180 633 217 650 248 643 L233 808 C220 833 189 839 160 819 L137 686 Z"><title>Left thigh</title></path>
+                <path id="back-right-thigh" class="body-hit-area" data-hotspot-id="back-right-thigh" tabindex="0" role="button" aria-label="Back right thigh" d="M350 598 C328 633 291 650 260 643 L275 808 C288 833 319 839 348 819 L371 686 Z"><title>Right thigh</title></path>
+                <path id="back-left-knee" class="body-hit-area" data-hotspot-id="back-left-knee" tabindex="0" role="button" aria-label="Back left knee" d="M157 810 C177 798 215 801 232 820 L226 886 C208 905 173 904 153 885 Z"><title>Left knee</title></path>
+                <path id="back-right-knee" class="body-hit-area" data-hotspot-id="back-right-knee" tabindex="0" role="button" aria-label="Back right knee" d="M351 810 C331 798 293 801 276 820 L282 886 C300 905 335 904 355 885 Z"><title>Right knee</title></path>
+                <path id="back-left-calf" class="body-hit-area" data-hotspot-id="back-left-calf" tabindex="0" role="button" aria-label="Back left calf" d="M154 886 C173 903 206 908 225 887 L216 984 L200 1120 L156 1120 L141 1010 Z"><title>Left calf</title></path>
+                <path id="back-right-calf" class="body-hit-area" data-hotspot-id="back-right-calf" tabindex="0" role="button" aria-label="Back right calf" d="M354 886 C335 903 302 908 283 887 L292 984 L308 1120 L352 1120 L367 1010 Z"><title>Right calf</title></path>
+                <path id="back-left-ankle" class="body-hit-area" data-hotspot-id="back-left-ankle" tabindex="0" role="button" aria-label="Back left ankle" d="M156 1107 L201 1107 L202 1170 L149 1170 Z"><title>Left ankle</title></path>
+                <path id="back-right-ankle" class="body-hit-area" data-hotspot-id="back-right-ankle" tabindex="0" role="button" aria-label="Back right ankle" d="M352 1107 L307 1107 L306 1170 L359 1170 Z"><title>Right ankle</title></path>
+                <path id="back-left-foot" class="body-hit-area" data-hotspot-id="back-left-foot" tabindex="0" role="button" aria-label="Back left foot" d="M149 1157 L203 1160 L214 1235 C196 1258 137 1256 112 1233 L127 1202 Z"><title>Left foot</title></path>
+                <path id="back-right-foot" class="body-hit-area" data-hotspot-id="back-right-foot" tabindex="0" role="button" aria-label="Back right foot" d="M359 1157 L305 1160 L294 1235 C312 1258 371 1256 396 1233 L381 1202 Z"><title>Right foot</title></path>
+              </svg>
             </div>
           </figure>
         </div>
 
+        <p class="body-map__selection" data-body-selection>Hover or focus a body area, then select it to prepare related resources.</p>
         <p class="body-map__legend"><span aria-hidden="true"></span> Anatomical areas highlight on hover, focus, or selection. Detailed study plates are planned.</p>
         <p class="visually-hidden" data-body-status aria-live="polite"></p>
       </section>

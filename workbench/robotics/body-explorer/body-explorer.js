@@ -11,6 +11,7 @@
   const orientationButtons = Array.from(explorer.querySelectorAll("[data-orientation]"));
   const bodyViews = Array.from(explorer.querySelectorAll("[data-body-view]"));
   const status = explorer.querySelector("[data-body-status]");
+  const selection = explorer.querySelector("[data-body-selection]");
   const state = {
     currentView: "body",
     orientation: "front",
@@ -75,9 +76,9 @@
     });
   };
 
-  const connectHotspotData = (root = explorer) => {
+  const connectHotspotData = () => {
     data.hotspots.forEach((hotspot) => {
-      const shape = root.querySelector(`[data-hotspot-id="${hotspot.id}"]`);
+      const shape = explorer.querySelector(`[data-hotspot-id="${hotspot.id}"]`);
       const region = regionById.get(hotspot.regionId);
 
       if (!shape || !region) {
@@ -86,10 +87,26 @@
 
       shape.classList.toggle("is-unavailable", region.availability !== "available");
       shape.dataset.availability = region.availability;
+      shape.setAttribute("aria-pressed", "false");
     });
   };
 
-  const connectEmbeddedMaps = () => {
+  const connectHitMaps = () => {
+    const setPairHighlight = (hotspotId, highlighted) => {
+      const pair = hotspotId.match(/^(front|back)-(left|right)-(.+)$/);
+
+      if (!pair) {
+        return;
+      }
+
+      const [, orientation, , area] = pair;
+
+      ["left", "right"].forEach((side) => {
+        const shape = explorer.querySelector(`[data-hotspot-id="${orientation}-${side}-${area}"]`);
+        shape?.classList.toggle("is-pair-highlighted", highlighted);
+      });
+    };
+
     const selectHotspot = (hotspotId) => {
       const hotspot = data.hotspots.find((entry) => entry.id === hotspotId);
 
@@ -98,45 +115,50 @@
       }
 
       state.selectedHotspot = hotspotId;
+      explorer.dataset.selectedHotspot = hotspotId;
 
-      explorer.querySelectorAll("[data-body-svg]").forEach((illustration) => {
-        illustration.contentDocument?.querySelectorAll("[data-hotspot-id]").forEach((shape) => {
-          shape.classList.toggle("is-selected", shape.dataset.hotspotId === hotspotId);
-        });
+      explorer.querySelectorAll("[data-hotspot-id]").forEach((shape) => {
+        const isSelected = shape.dataset.hotspotId === hotspotId;
+        shape.classList.toggle("is-selected", isSelected);
+        shape.setAttribute("aria-pressed", String(isSelected));
       });
 
       explorer.querySelectorAll(".body-region-directory__item").forEach((item) => {
         item.classList.toggle("is-selected", item.id === `region-${hotspot.regionId}`);
       });
 
+      const relatedResources = data.resources.filter((resource) => resource.hotspotIds.includes(hotspotId));
+      const resourceMessage = relatedResources.length
+        ? `${relatedResources.length} related ${relatedResources.length === 1 ? "resource" : "resources"} ready.`
+        : "Related resources are planned.";
+
+      if (selection) {
+        selection.textContent = `${hotspot.label} selected. ${resourceMessage}`;
+      }
+
       status.textContent = `${hotspot.label} selected. ${hotspot.description}.`;
+
+      explorer.dispatchEvent(new CustomEvent("bodyexplorer:selectionchange", {
+        detail: { hotspot, region: regionById.get(hotspot.regionId), resources: relatedResources },
+      }));
     };
 
-    explorer.querySelectorAll("[data-body-svg]").forEach((illustration) => {
-      const connect = () => {
-        if (illustration.contentDocument) {
-          connectHotspotData(illustration.contentDocument);
+    explorer.querySelectorAll("[data-hotspot-id]").forEach((shape) => {
+      const activate = () => selectHotspot(shape.dataset.hotspotId);
+      const showPair = () => setPairHighlight(shape.dataset.hotspotId, true);
+      const hidePair = () => setPairHighlight(shape.dataset.hotspotId, false);
 
-          illustration.contentDocument.querySelectorAll("[data-hotspot-id]").forEach((shape) => {
-            if (shape.dataset.interactionConnected === "true") {
-              return;
-            }
-
-            const activate = () => selectHotspot(shape.dataset.hotspotId);
-            shape.addEventListener("click", activate);
-            shape.addEventListener("keydown", (event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                activate();
-              }
-            });
-            shape.dataset.interactionConnected = "true";
-          });
+      shape.addEventListener("pointerenter", showPair);
+      shape.addEventListener("pointerleave", hidePair);
+      shape.addEventListener("focus", showPair);
+      shape.addEventListener("blur", hidePair);
+      shape.addEventListener("click", activate);
+      shape.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          activate();
         }
-      };
-
-      illustration.addEventListener("load", connect);
-      connect();
+      });
     });
   };
 
@@ -190,9 +212,6 @@
 
     state.currentView = next.currentView;
     state.orientation = next.orientation;
-    state.selectedHotspot = null;
-    state.selectedResource = null;
-
     if (window.location.hash !== canonicalHash) {
       window.history.replaceState(null, "", canonicalHash);
     }
@@ -222,7 +241,8 @@
 
   renderDirectory();
   renderBasics();
-  connectEmbeddedMaps();
+  connectHotspotData();
+  connectHitMaps();
   explorer.classList.add("is-enhanced");
   readHash();
 })();
